@@ -5,7 +5,7 @@ var express  = require( 'express' ),
     path     = require( 'path' ),
     root     = __dirname,
     port     = 8000, // Adjust Required Port Number
-    project  = "PROJECT_NAME", // Change Project Name
+    project  = "inventory", // Change Project Name
     app      = express();
 
 app.use(express.static('client'));
