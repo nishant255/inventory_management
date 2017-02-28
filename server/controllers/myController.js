@@ -1,7 +1,7 @@
 console.log("Loading Serverside myController.js");
 
 var mongoose = require('mongoose'),
-    myModel = mongoose.model('MyModel');
+    user = mongoose.model('User');
 
 function MyController() {
 
