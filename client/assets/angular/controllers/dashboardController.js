@@ -1,6 +1,6 @@
-console.log("Loading Clientside myController.js");
+console.log("Loading Clientside dashboardController.js");
 
-app.controller('myController', ['$scope', '$location', 'myFactory', function ($scope, $location, myFactory) {
+app.controller('dashboardController', ['$scope', '$location', 'productFactory', function ($scope, $location, productFactory) {
 
   // Initialize Required Attributes
 

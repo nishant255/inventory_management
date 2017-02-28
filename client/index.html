@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class='red lighten-2'>
   <head>
     <meta charset="utf-8">
     <title>Full Mean Template</title>
@@ -8,15 +8,22 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Bower Components -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src='angular/angular.js' charset='utf-8' ></script>
     <script src='angular-route/angular-route.js' charset='utf-8' ></script>
+<<<<<<< HEAD
     <script src='angular-messages/angular-messages.js' charset='utf-8' ></script>
     <script src='jquery/dist/jquery.js' charset='utf-8' ></script>
+=======
+    <script src='angular-messages/angular-messages.js' charset='`utf-8' ></script>
+    <script src='materialize/dist/js/materialize.min.js' charset='`utf-8' ></script>
+>>>>>>> 1d596d77e91e74338e5d0de1ca302287fa8df631
 
     <!-- Master App -->
     <script src='./assets/angular/app.js' charset='utf-8' ></script>
 
     <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="materialize/dist/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/materialize.css">
 
@@ -27,13 +34,15 @@
     <script src='./assets/angular/factories/myFactory.js' charset='utf-8' ></script>
 
     <!-- Controllers -->
-    <script src='./assets/angular/controllers/MyController.js' charset='utf-8' ></script>
+    <script src='./assets/angular/controllers/dashboardController.js' charset='utf-8' ></script>
+
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body ng-app='app'>
     <nav>
+      <a href='/#!'>Logout</a>
       <!-- Add your Navigation Here -->
     </nav>
     <div ng-view="">
