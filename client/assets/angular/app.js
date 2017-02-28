@@ -7,9 +7,9 @@ app.config( function ($routeProvider) {
   $routeProvider
 
     .when('/', {
-      templateUrl: 'partials/dashboard.html',
-      controller: 'dashboardController',
-      controllerAs: 'DC'
+      templateUrl: 'partials/inventory.html',
+      controller: 'inventoryController',
+      controllerAs: 'IC'
     })
 
     .otherwise({
