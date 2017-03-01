@@ -1,6 +1,6 @@
 <!-- orders page - sortable and filterable table of products -->
 <nav>
-  <a href="#!/dashboard">Dashboard</a> - <a href="#!/inventory">Products</a> - <a href="#!/orders">Orders</a> - <a href="#!/companies">Companies</a> - <a href='#!/logout'>Logout</a>
+  <a href="#!/dashboard">Dashboard</a> - <a href="#!/inventory">Inventory</a> - <a href="#!/orders">Orders</a> - <a href="#!/companies">Companies</a> - <a href='#!/logout'>Logout</a>
   <!-- Add your Navigation Here -->
 </nav>
 
@@ -12,6 +12,8 @@
   <div ng-repeat="order in orders">
     <hr>
     <span class="bold">Order ID: {{order._id}}</span> - <span class="bold">{{order.products.length}} Product(s)</span>
+    <br>
+    <a href="#!/orders/{{order._id}}">View Order</a>
     <br>
     <span>Placed By: {{order.recipient.email}}</span>
     <br>

@@ -10,9 +10,14 @@ app.config( function ($routeProvider) {
       controller: 'loginController'
     })
 
-    .when('/dashboard', {
-      templateUrl: 'partials/dashboard.html',
-      controller: 'dashboardController'
+    .when('/admindashboard', {
+      templateUrl: 'partials/adminDashboard.html',
+      controller: 'adminDashboardController'
+    })
+
+    .when('/userdashboard', {
+      templateUrl: 'partials/userDashboard.html',
+      controller: 'userDashboardController'
     })
 
     .when('/register', {
@@ -52,6 +57,22 @@ app.config( function ($routeProvider) {
       templateUrl: 'partials/add_product.html',
       controller: 'addProductController',
     })
+
+    .when('/products/:id', {
+      templateUrl: 'partials/product.html',
+      controller: 'productController'
+    })
+
+    .when('/orders/:id', {
+      templateUrl: 'partials/order.html',
+      controller: 'orderController'
+    })
+
+    .when('/companies/:id', {
+      templateUrl: 'partials/company.html',
+      controller: 'companyController'
+    })
+
     .otherwise({
       redirectTo: '/'
     });

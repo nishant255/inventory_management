@@ -64,5 +64,7 @@ app.controller('companiesController', ['$scope', '$location', function ($scope, 
   // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
-
+  $scope.show = function(company){
+    $location.url('/companies/'+company._id);
+  }
 }]);

@@ -28,5 +28,7 @@ app.controller('inventoryController', ['$scope', '$location', function ($scope, 
   // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
-
+  $scope.show = function(product){
+    $location.url('/products/'+product._id);
+  }
 }]);

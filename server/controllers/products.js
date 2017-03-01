@@ -1,4 +1,4 @@
-console.log("Loading Serverside productsjs");
+console.log("Loading Serverside products.js");
 
 var mongoose = require('mongoose'),
     Product = mongoose.model('Product');
@@ -43,11 +43,21 @@ function ProductsController() {
         res.json(err)
       } else {
         console.log('successfully created product ',result);
-
         res.json(result)
       }
     })
-  };
+  }
+  _this.show = function(req,res){
+    console.log('got to the server with product id ', req.body);
+    Product.findOne({_id: req.body}, function(err,result){
+      if (err){
+        console.log('error showing product');
+      } else {
+        console.log('successfully got product ', result);
+        res.json(result)
+      }
+    })
+  }
 }
 
 module.exports = new ProductsController();
