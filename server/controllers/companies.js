@@ -12,7 +12,7 @@ function CompaniesController() {
   // -------------------------------------------------------------------------
   _this.index = function(req, res){
     console.log('got to the server controller and about to search for companies in DB');
-    Company.find({},function(err,result){
+    Company.find({}).populate('products').exec(function(err,result){
       if(err){
         console.log('there was an error finding companies',err);
         res.json(err);
@@ -24,7 +24,7 @@ function CompaniesController() {
   }
   _this.findCompany = function(req, res){
     console.log('got to the server controller and about to serach for company with id',req.params);
-    Company.findById(req.params.company_id, function(err,result){
+    Company.findById(req.params.company_id).populate('products').exec(function(err,result){
       if(err){
         console.log('there was an error finding company',err);
         res.json(err)
@@ -46,6 +46,26 @@ function CompaniesController() {
       }
     })
   };
+  _this.addProduct = function(req,res){
+    console.log('got to the server controller with the product data ',req.body);
+    Company.update({_id:req.body._company},{$push:{'products':req.body}},function(err,result){
+      if(err){
+        console.log('there was an error updating company',err);
+        res.json(err)
+      } else {
+
+        Company.findById(req.body._company,function(err,result){
+          if(err){
+            console.log('error!',err);
+            res.json(err)
+          } else {
+            console.log('FOUND TEH COMPENEH',result);
+            res.json(result)
+          }
+        })
+      }
+    })
+  }
 }
 
 module.exports = new CompaniesController();

@@ -33,6 +33,16 @@ app.factory('companyFactory', ['$http', function ($http) {
         callback(returned_data);
       })
     }
+    this.addProduct = function(product,callback){
+      console.log('got to the companyFactory with product',product);
+      $http.post('/companies/:company_id/addProduct',product).then(function(company_data){
+        console.log('returned from the server with updated companay_data', company_data.data);
+        if(company_data.data.errors){
+          console.log('there were errors updating company products',company_data.data.errors);
+        }
+        callback(company_data)
+      })
+    }
   }
   return new CompanyFactory();
 }]);

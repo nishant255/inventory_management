@@ -6,6 +6,7 @@ var path         = require('path'),
 module.exports = function (app) {
   app.get('/companies', companies.index)
   app.get('/companies/:company_id', companies.findCompany)
+  app.post('/companies/:company_id/addProduct', companies.addProduct)
   app.post('/companies', companies.create)
   app.post('/products', products.create)
 };
