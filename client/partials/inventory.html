@@ -2,34 +2,27 @@
 
 <h1>Inventory</h1>
 
-<div class="alert alert-info">
-  <p>Sort Type: {{ sortType }}</p>
-  <p>Sort Reverse: {{ sortReverse }}</p>
-  <p>Search Query: {{ search }}</p>
-</div>
+<input placeholder="search..." ng-model="search">
 
-<input ng-model="search" placeholder="">
-<div style="overflow:scroll">
-  <table>
-    <thead>
-      <th><button ng-click="sortType='_id'; sortReverse = !sortReverse">ID</button></th>
-      <th><button href="#" ng-click="sortType='name'; sortReverse = !sortReverse">Name</button></th>
-      <th><button href="#" ng-click="sortType='buyPrice'; sortReverse = !sortReverse">Buy Price</button></th>
-      <th><button href="#" ng-click='sortType="sellPrice"; sortReverse = !sortReverse'>Sell Price</button></th>
-      <th><button href="#" ng-click='sortType="quantity"; sortReverse = !sortReverse'>Quantity</button></th>
-      <th><button href="#" ng-click='sortType="companyName"; sortReverse = !sortReverse'>Company Name</button></th>
-      <th>Actions</th>
-    </thead>
-    <tbody>
-      <tr ng-repeat="product in products | filter: {name:search} | orderBy:sortType:sortReverse">
-        <td name='id' ng-bind="product._id"></td>
-        <td ng-bind="product.name"></td>
-        <td ng-bind="product.buyPrice"></td>
-        <td ng-bind="product.sellPrice"></td>
-        <td ng-bind="product.quantity"></td>
-        <td ng-bind="product._company.name"></td>
-        <td><button ng-click="buy()">Buy</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table>
+<thead>
+<th><button ng-click="sortType='_id'; sortReverse = !sortReverse">ID</button></th>
+<th><button href="#" ng-click="sortType='name'; sortReverse = !sortReverse">Name</button></th>
+<th><button href="#" ng-click="sortType='buyPrice'; sortReverse = !sortReverse">Buy Price</button></th>
+<th><button href="#" ng-click='sortType="sellPrice"; sortReverse = !sortReverse'>Sell Price</button></th>
+<th><button href="#" ng-click='sortType="quantity"; sortReverse = !sortReverse'>Quantity</button></th>
+<th><button href="#" ng-click='sortType="companyName"; sortReverse = !sortReverse'>Company Name</button></th>
+<th>Actions</th>
+</thead>
+<tbody>
+<tr ng-repeat="product in products | filter: {name:search} | orderBy:sortType:sortReverse">
+<td name='id' ng-bind="product._id"></td>
+<td ng-bind="product.name"></td>
+<td ng-bind="product.buyPrice"></td>
+<td ng-bind="product.sellPrice"></td>
+<td ng-bind="product.quantity"></td>
+<td ng-bind="product._company.name"></td>
+<td><button ng-click="buy()">Buy</button></td>
+</tr>
+</tbody>
+</table>

@@ -1,3 +1,19 @@
 a {
   color: black
 }
+
+::placeholder {
+  color:black
+* {
+  text-align: center;
+}
+
+.scroll{
+  overflow: scroll;
+  height: 80%
+}
+
+.bold {
+  font-weight: bold;
+
+}

@@ -1,0 +1,9 @@
+<h2>Choose Company to buy Products from</h2>
+<!-- {{companies}} -->
+<form ng-submit='start()'>
+  Select Company
+  <select class='browser-default' ng-options='company as company.name for company in companies' ng-model='order.company'></select>
+
+  or <a href='/#!/add_company'>Add New Company</a>
+  <br><input type="submit" name="" value="Create Order">
+</form>

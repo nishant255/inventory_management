@@ -1,4 +1,4 @@
-console.log("Loading Clientside myController.js");
+console.log("Loading Clientside inventoryController.js");
 
 app.controller('inventoryController', ['$scope', '$location', function ($scope, $location) {
 
@@ -22,7 +22,7 @@ app.controller('inventoryController', ['$scope', '$location', function ($scope, 
     }
   ];
   $scope.sortType = 'name';
-  $scope.sortReverse = false;
+  $scope.sortReverse = true;
   $scope.search = '';
 
   // -------------------------------------------------------------------------

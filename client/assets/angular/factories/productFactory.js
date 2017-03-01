@@ -1,6 +1,6 @@
 console.log("Loading product.js");
 
-app.factory('product', ['$http', function ($http) {
+app.factory('productFactory', ['$http', function ($http) {
 
   // Initialize Required Attributes
 
