@@ -35,7 +35,23 @@ app.config( function ($routeProvider) {
       templateUrl: 'partials/companies.html',
       controller: 'companiesController'
     })
-
+    .when('/add_order', {
+      templateUrl: 'partials/add_order.html',
+      controller: 'addOrderController',
+      controllerAs: 'AOC'
+    })
+    .when('/add_company', {
+      templateUrl: 'partials/add_company.html',
+      controller: 'addCompanyController',
+    })
+    .when('/add_order/:company_id', {
+      templateUrl: 'partials/add_products.html',
+      controller: 'addProductsController',
+    })
+    .when('/add_product/:company_id', {
+      templateUrl: 'partials/add_product.html',
+      controller: 'addProductController',
+    })
     .otherwise({
       redirectTo: '/'
     });

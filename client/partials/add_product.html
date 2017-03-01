@@ -1,0 +1,12 @@
+
+<div class="container">
+  <h1>Add Product</h1>
+  <form name='form' ng-submit='create()'>
+    <input type="text" ng-model='product.name' placeholder="Product Name" required>
+    <input type="number" step='any' ng-model='product.buyPrice' placeholder="Buy Price $" required>
+    <input type="number" step='any' ng-model='product.sellPrice' placeholder="Sell Price $" required>
+    <input type="number" ng-model='product.quantity' placeholder="Quantity" required>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Create</button>
+    <a href='/#!/add_order/{{company._id}}'class="waves-effect waves-light btn">Cancel</a>
+  </form>
+</div>

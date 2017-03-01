@@ -2,8 +2,10 @@
 <!-- {{companies}} -->
 <form ng-submit='start()'>
   Select Company
-  <select class='browser-default' ng-options='company as company.name for company in companies' ng-model='order.company'></select>
+  <select class='browser-default' ng-options='company as company.name for company in companies' ng-model='order.company'></select><br>
 
-  or <a href='/#!/add_company'>Add New Company</a>
-  <br><input type="submit" name="" value="Create Order">
+  or <a href='/#!/add_company'class="waves-effect waves-light btn">Add New Company</a><br><br>
+  <button class="btn waves-effect waves-light" type="submit" name="action">Continue to Add Products</button>
+  <br>
 </form>
+<a href='/#!/'><button>Cancel</button></a>

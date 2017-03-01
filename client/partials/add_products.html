@@ -1,1 +1,10 @@
-We're here!
+<h2>Choose Product to buy from {{company.name}}</h2>
+<form ng-submit='start()'>
+  Select Product
+  <select class='browser-default' ng-options='product as product.name for product in company.products' ng-model='order.product'></select><br>
+
+  or <a href='/#!/add_product/{{company._id}}'class="waves-effect waves-light btn">Add New Product</a><br><br>
+  <button class="btn waves-effect waves-light" type="submit" name="action">Add to Order</button>
+  <br>
+</form><br>
+<a href='/#!/add_company'class="waves-effect waves-light btn">Cancel</a>
