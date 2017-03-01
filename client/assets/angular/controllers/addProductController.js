@@ -16,6 +16,11 @@ app.controller('addProductController', ['$scope', '$location', 'productFactory',
     console.log('you clicked create',$scope.product);
     productFactory.create($scope.product,$scope.company, function(product_data){
       console.log('returned from the product factory with the created product',product_data.data);
+      if(product_data.data.errors){
+        $scope.errors = product_data.data.errors
+      } else {
+        $location.url('/add_order/'+$scope.company._id)
+      }
     })
   }
 }]);
