@@ -5,11 +5,20 @@ var app = angular.module('app', ['ngRoute', 'ngMessages']);
 app.config( function ($routeProvider) {
 
   $routeProvider
-
     .when('/', {
       templateUrl: 'partials/login.html',
-      controller: 'loginController',
-      controllerAs: 'LC'
+      controller: 'loginController'
+    })
+
+    .when('/dashboard', {
+      templateUrl: 'partials/dashboard.html',
+      controller: 'dashboardController'
+    })
+
+    .when('/register', {
+      templateUrl: 'partials/register.html',
+      controller: 'registerController',
+      controllerAs: 'RC'
     })
     .when('/inventory', {
       templateUrl: 'partials/inventory.html',
@@ -43,7 +52,6 @@ app.config( function ($routeProvider) {
       templateUrl: 'partials/add_product.html',
       controller: 'addProductController',
     })
-
     .otherwise({
       redirectTo: '/'
     });
