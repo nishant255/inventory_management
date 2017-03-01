@@ -7,6 +7,12 @@ app.config( function ($routeProvider) {
   $routeProvider
 
     .when('/', {
+      templateUrl: 'partials/login.html',
+      controller: 'loginController',
+      controllerAs: 'LC'
+    })
+
+    .when('/inventory', {
       templateUrl: 'partials/inventory.html',
       controller: 'inventoryController',
       controllerAs: 'IC'
