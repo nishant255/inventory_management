@@ -63,6 +63,8 @@ function CompaniesController() {
             res.json(result)
           }
         })
+      }
+    })
   }
   _this.show = function(req,res){
     console.log('got to the server with company id ', req.body);
