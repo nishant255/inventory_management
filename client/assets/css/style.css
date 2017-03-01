@@ -10,3 +10,8 @@ a {
   overflow: scroll;
   height: 80%
 }
+
+.bold {
+  font-weight: bold;
+
+}

@@ -7,11 +7,9 @@
 <div class="scroll">
   <div ng-repeat="order in orders">
     <hr>
-    <span>Order ID: {{order._id}}</span>
+    <span class="bold">Order ID: {{order._id}}</span> - <span class="bold">{{order.products.length}} Product(s)</span>
     <br>
     <span>Placed By: {{order.recipient.email}}</span>
-    <br>
-    <span># Products: {{order.products.length}}</span>
     <br>
     <span>Placed On: {{order.created_at}}</span>
     <br>
