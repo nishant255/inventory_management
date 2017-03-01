@@ -5,11 +5,19 @@ var app = angular.module('app', ['ngRoute', 'ngMessages']);
 app.config( function ($routeProvider) {
 
   $routeProvider
-
     .when('/', {
       templateUrl: 'partials/login.html',
-      controller: 'loginController',
-      controllerAs: 'LC'
+      controller: 'loginController'
+    })
+
+    .when('/admindashboard', {
+      templateUrl: 'partials/adminDashboard.html',
+      controller: 'adminDashboardController'
+    })
+
+    .when('/userdashboard', {
+      templateUrl: 'partials/userDashboard.html',
+      controller: 'userDashboardController'
     })
 
     .when('/register', {
@@ -17,7 +25,6 @@ app.config( function ($routeProvider) {
       controller: 'registerController',
       controllerAs: 'RC'
     })
-
     .when('/inventory', {
       templateUrl: 'partials/inventory.html',
       controller: 'inventoryController',
@@ -41,12 +48,29 @@ app.config( function ($routeProvider) {
     .when('/add_company', {
       templateUrl: 'partials/add_company.html',
       controller: 'addCompanyController',
-      controllerAs: 'ACC'
     })
     .when('/add_order/:company_id', {
       templateUrl: 'partials/add_products.html',
       controller: 'addProductsController',
-      controllerAs: 'APC'
+    })
+    .when('/add_product/:company_id', {
+      templateUrl: 'partials/add_product.html',
+      controller: 'addProductController',
+    })
+
+    .when('/products/:id', {
+      templateUrl: 'partials/product.html',
+      controller: 'productController'
+    })
+
+    .when('/orders/:id', {
+      templateUrl: 'partials/order.html',
+      controller: 'orderController'
+    })
+
+    .when('/companies/:id', {
+      templateUrl: 'partials/company.html',
+      controller: 'companyController'
     })
 
     .otherwise({

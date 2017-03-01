@@ -45,5 +45,7 @@ app.controller('ordersController', ['$scope', '$location', function ($scope, $lo
   // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
-
+  $scope.show = function(order){
+    $location.url('/orders/'+order._id);
+  }
 }]);

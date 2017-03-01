@@ -1,12 +1,12 @@
-console.log("Loading Clientside dashboardController.js");
+console.log("Loading Clientside adminDashboardController.js");
 
-app.controller('dashboardController', ['$scope', '$location', 'productFactory', function ($scope, $location, productFactory) {
+app.controller('adminDashboardController', ['$scope', '$location', 'productFactory', function ($scope, $location, productFactory) {
 
   // Initialize Required Attributes
 
   // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
-  
+
 
 }]);
