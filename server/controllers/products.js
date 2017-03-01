@@ -30,6 +30,7 @@ function ProductsController() {
         res.json(err)
       } else {
         console.log('successfully found product',result);
+
         res.json(result)
       }
     })
@@ -42,6 +43,7 @@ function ProductsController() {
         res.json(err)
       } else {
         console.log('successfully created product ',result);
+
         res.json(result)
       }
     })
