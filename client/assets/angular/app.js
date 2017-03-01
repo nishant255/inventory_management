@@ -6,10 +6,20 @@ app.config( function ($routeProvider) {
 
   $routeProvider
 
-    .when('/', {
-      templateUrl: 'partials/dashboard.html',
-      controller: 'dashboardController',
-      controllerAs: 'DC'
+    .when('/inventory', {
+      templateUrl: 'partials/inventory.html',
+      controller: 'inventoryController',
+      controllerAs: 'IC'
+    })
+
+    .when('/orders', {
+      templateUrl: 'partials/orders.html',
+      controller: 'ordersController'
+    })
+
+    .when('/companies', {
+      templateUrl: 'partials/companies.html',
+      controller: 'companiesController'
     })
     .when('/add_order', {
       templateUrl: 'partials/add_order.html',
