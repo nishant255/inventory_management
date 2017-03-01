@@ -52,6 +52,22 @@ app.config( function ($routeProvider) {
       templateUrl: 'partials/add_product.html',
       controller: 'addProductController',
     })
+
+    .when('/products/:id', {
+      templateUrl: 'partials/product.html',
+      controller: 'productController'
+    })
+
+    .when('/orders/:id', {
+      templateUrl: 'partials/order.html',
+      controller: 'orderController'
+    })
+
+    .when('/companies/:id', {
+      templateUrl: 'partials/company.html',
+      controller: 'companyController'
+    })
+
     .otherwise({
       redirectTo: '/'
     });

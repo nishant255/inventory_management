@@ -1,4 +1,4 @@
-console.log("Loading Serverside company.js");
+console.log("Loading Serverside companies.js");
 
 var mongoose = require('mongoose'),
     Company = mongoose.model('Company');
@@ -35,7 +35,7 @@ function CompaniesController() {
     })
   }
   _this.create = function (req, res) {
-    console.log('got to the server controller with companyd data ',req.body);
+    console.log('got to the server controller with company data ',req.body);
     Company.create(req.body,function(err,result){
       if(err){
         console.log('there was an error creating company',err);
@@ -45,7 +45,18 @@ function CompaniesController() {
         res.json(result)
       }
     })
-  };
+  }
+  _this.show = function(req,res){
+    console.log('got to the server with company id ', req.body);
+    Company.findOne({_id: req.body}, function(err,result){
+      if (err){
+        console.log('error showing company');
+      } else {
+        console.log('successfully got company ', result);
+        res.json(result)
+      }
+    })
+  }
 }
 
 module.exports = new CompaniesController();
