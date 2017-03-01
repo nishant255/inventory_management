@@ -2,6 +2,8 @@ a {
   color: black
 }
 
+::placeholder {
+  color:black
 * {
   text-align: center;
 }

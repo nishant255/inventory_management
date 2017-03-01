@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
 var company = new mongoose.Schema({
-  products: [{ type: Schema.Types.ObjectId, ref: 'Product', required:true}],
+  name: { type:String, required:true, minlength:3},
+  products: [{ type: Schema.Types.ObjectId, ref: 'Product', required:false}],
   email: { type:String, required: true, minlength:5},
   phone: { type:String, required: true, minlength:10},
   address: {
