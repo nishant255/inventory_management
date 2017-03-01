@@ -1,0 +1,14 @@
+
+<div class="container">
+  <h1>Add Company</h1>
+  <form name='form' ng-submit='ACC.create()'>
+    <input type="text" ng-model='company.name' placeholder="Company Name" required>
+    <input type="text" ng-model='company.email' placeholder="Email" required>
+    <input type="number" ng-model='company.phone' placeholder="Phone Number" required>
+    <input type="text" ng-model='company.address.street' placeholder="Street and Number" required>
+    <input type="text" ng-model='company.address.city' placeholder="City" required>
+    <input type="number" ng-model='company.address.zipcode' placeholder="Zipcode" required>
+    <input type="text" ng-model='company.address.state' placeholder="State" required>
+    <input type="submit" name="" value="Create" ng-disabled='form.$invalid'>
+  </form>
+</div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class='red lighten-2'>
+<html>
   <head>
     <meta charset="utf-8">
     <title>Full Mean Template</title>
@@ -19,16 +19,20 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 
     <!-- Factories -->
-    <script src='./assets/angular/factories/myFactory.js' charset='utf-8' ></script>
+    <script src='./assets/angular/factories/companyFactory.js' charset='utf-8' ></script>
+    <script src='./assets/angular/factories/productFactory.js' charset='utf-8' ></script>
 
     <!-- Controllers -->
     <script src='./assets/angular/controllers/dashboardController.js' charset='utf-8' ></script>
+    <script src='./assets/angular/controllers/addOrderController.js' charset='utf-8' ></script>
+    <script src='./assets/angular/controllers/addCompanyController.js' charset='utf-8' ></script>
+    <script src='./assets/angular/controllers/addProductsController.js' charset='utf-8' ></script>
 
 
   </head>
   <body ng-app='app'>
     <nav>
-      <a href='/#!'>Logout</a>
+      <a href='/#!'>Dashboard</a> | <a href='/#!'>Logout</a>
       <!-- Add your Navigation Here -->
     </nav>
     <div ng-view="">
