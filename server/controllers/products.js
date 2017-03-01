@@ -12,7 +12,7 @@ function ProductsController() {
   // -------------------------------------------------------------------------
   _this.index = function(req, res){
     console.log('got to the server controller and about to search for products in DB');
-    Product.find({},function(err,result){
+    Product.find({}).populate('products').exec(function(err,result){
       if(err){
         console.log('there was an error finding products',err);
         res.json(err);

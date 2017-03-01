@@ -5,6 +5,8 @@ var path         = require('path'),
     orders = require('./../controllers/orders.js');
 
 module.exports = function (app) {
+  app.get('/companies/:company_id', companies.findCompany)
+  app.post('/companies/:company_id/addProduct', companies.addProduct)
   app.get('/companies/:id', companies.show)
   app.get('/companies', companies.index);
   app.post('/companies', companies.create);

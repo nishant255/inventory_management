@@ -29,6 +29,9 @@ app.factory('productFactory', ['$http', function ($http) {
       $http.post('/products/',product).then(function(returned_data){
         console.log('returned form the server with the created company',returned_data.data);
         callback(returned_data);
+        if (returned_data.data.errors) {
+          console.log('there was an error',returned_data.data.errors);
+        }
       })
     }
   }
