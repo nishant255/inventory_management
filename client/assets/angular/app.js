@@ -34,12 +34,14 @@ app.config( function ($routeProvider) {
     .when('/add_company', {
       templateUrl: 'partials/add_company.html',
       controller: 'addCompanyController',
-      controllerAs: 'ACC'
     })
     .when('/add_order/:company_id', {
       templateUrl: 'partials/add_products.html',
       controller: 'addProductsController',
-      controllerAs: 'APC'
+    })
+    .when('/add_product/:company_id', {
+      templateUrl: 'partials/add_product.html',
+      controller: 'addProductController',
     })
 
     .otherwise({
