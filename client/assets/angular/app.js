@@ -11,6 +11,13 @@ app.config( function ($routeProvider) {
       controller: 'loginController',
       controllerAs: 'LC'
     })
+
+    .when('/register', {
+      templateUrl: 'partials/register.html',
+      controller: 'registerController',
+      controllerAs: 'RC'
+    })
+
     .when('/inventory', {
       templateUrl: 'partials/inventory.html',
       controller: 'inventoryController',
