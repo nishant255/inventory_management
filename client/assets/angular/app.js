@@ -6,10 +6,20 @@ app.config( function ($routeProvider) {
 
   $routeProvider
 
-    .when('/', {
+    .when('/inventory', {
       templateUrl: 'partials/inventory.html',
       controller: 'inventoryController',
       controllerAs: 'IC'
+    })
+
+    .when('/orders', {
+      templateUrl: 'partials/orders.html',
+      controller: 'ordersController'
+    })
+
+    .when('/companies', {
+      templateUrl: 'partials/companies.html',
+      controller: 'companiesController'
     })
 
     .otherwise({

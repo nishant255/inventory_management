@@ -1,0 +1,36 @@
+<!-- orders page - sortable and filterable table of products -->
+
+<h1>Orders</h1>
+
+<input ng-model="search" placeholder="search products...">
+
+<div class="scroll">
+  <div ng-repeat="order in orders">
+    <hr>
+    <span class="bold">Order ID: {{order._id}}</span> - <span class="bold">{{order.products.length}} Product(s)</span>
+    <br>
+    <span>Placed By: {{order.recipient.email}}</span>
+    <br>
+    <span>Placed On: {{order.created_at}}</span>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in order.products | filter: {name:search}">
+          <td ng-bind="product._id"></td>
+          <td ng-bind="product.name"></td>
+          <td ng-bind="product.quantity"></td>
+          <td ng-bind="product.price"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
