@@ -1,19 +1,22 @@
 <!-- orders page - sortable and filterable table of products -->
 
-<h1>Orders</h1>
+<h1>Companies</h1>
 
 <input ng-model="search" placeholder="search products...">
 
 <div class="scroll">
-  <div ng-repeat="order in orders">
+  <div ng-repeat="company in companies">
     <hr>
-    <span>Order ID: {{order._id}}</span>
+    <span>Company ID: {{company._id}}</span>
     <br>
-    <span>Placed By: {{order.recipient.email}}</span>
+    <span>Name: {{company.name}}</span>
     <br>
-    <span># Products: {{order.products.length}}</span>
+    <span>Email: {{company.email}}</span>
     <br>
-    <span>Placed On: {{order.created_at}}</span>
+    <span>Phone: {{company.phone}}</span>
+    <br>
+    <span>Address: {{company.address.street}}</span>
+    <span>{{company.address.city}}, {{company.address.state}} {{company.address.zipcode}}</span>
     <br>
     <table>
       <thead>
@@ -21,15 +24,15 @@
           <th>Product ID</th>
           <th>Name</th>
           <th>Quantity</th>
-          <th>Price:</th>
+          <th>Price</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="product in order.products | filter: {name:search}">
+        <tr ng-repeat="product in company.products | filter: {name:search}">
           <td ng-bind="product._id"></td>
           <td ng-bind="product.name"></td>
           <td ng-bind="product.quantity"></td>
-          <td ng-bind="product.price"></td>
+          <td ng-bind="product.sellPrice"></td>
         </tr>
       </tbody>
     </table>
