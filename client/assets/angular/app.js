@@ -10,6 +10,13 @@ app.config( function ($routeProvider) {
       controller: 'loginController'
     })
 
+    .when('/register', {
+      templateUrl: 'partials/register.html',
+      controller: 'registerController',
+      controllerAs: 'RC'
+    })
+
+
     .when('/dashboard', {
       templateUrl: 'partials/dashboard.html',
       controller: 'dashboardController'
