@@ -13,6 +13,8 @@
     <hr>
     <span class="bold">Order ID: {{order._id}}</span> - <span class="bold">{{order.products.length}} Product(s)</span>
     <br>
+    <a href="#!/orders/{{order._id}}">View Order</a>
+    <br>
     <span>Placed By: {{order.recipient.email}}</span>
     <br>
     <span>Placed On: {{order.created_at}}</span>
