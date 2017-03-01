@@ -21,6 +21,10 @@ app.factory('companyFactory', ['$http', function ($http) {
     }
     this.findCompany = function(company_id,callback){
       console.log('got to the factory with the company id ',company_id);
+      $http.get('/companies/'+company_id).then(function(returned_data){
+        console.log('returned form the server with the company', returned_data.data);
+        callback(returned_data);
+      })
 
     }
     this.create = function(company,callback){

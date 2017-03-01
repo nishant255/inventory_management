@@ -22,6 +22,18 @@ function CompaniesController() {
       }
     })
   }
+  _this.findCompany = function(req, res){
+    console.log('got to the server controller and about to serach for company with id',req.params);
+    Company.findById(req.params.company_id, function(err,result){
+      if(err){
+        console.log('there was an error finding company',err);
+        res.json(err)
+      } else {
+        console.log('successfully found company',result);
+        res.json(result)
+      }
+    })
+  }
   _this.create = function (req, res) {
     console.log('got to the server controller with company data ',req.body);
     Company.create(req.body,function(err,result){

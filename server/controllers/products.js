@@ -22,6 +22,19 @@ function ProductsController() {
       }
     })
   }
+  _this.findProduct = function(req, res){
+    console.log('got to the server controller and about to serach for product with id',req.params);
+    Product.findById(req.params.product_id, function(err,result){
+      if(err){
+        console.log('there was an error finding product',err);
+        res.json(err)
+      } else {
+        console.log('successfully found product',result);
+
+        res.json(result)
+      }
+    })
+  }
   _this.create = function (req, res) {
     console.log('got to the server controller with product data ',req.body);
     Product.create(req.body,function(err,result){
