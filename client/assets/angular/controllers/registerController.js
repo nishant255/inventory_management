@@ -1,6 +1,6 @@
 console.log("Loading Clientside registerController.js");
 
-app.controller('registerController', ['$scope', '$location', 'userFactory', '$cookieStore' function ($scope, $location, userFactory, $cookieStore) {
+app.controller('registerController', ['$scope', '$location', 'userFactory', '$cookieStore', function ($scope, $location, userFactory, $cookieStore) {
 
   var _this = this;
   _this.newUser = {};
@@ -23,5 +23,6 @@ app.controller('registerController', ['$scope', '$location', 'userFactory', '$co
       }
     });
   };
+
 
 }]);

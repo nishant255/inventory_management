@@ -1,6 +1,6 @@
 console.log("Loading Clientside addProductsController.js");
 
-app.controller('addProductsController', ['$scope', '$location', 'productFactory','companyFactory','$routeParams', '$cookieStore', function ($scope, $location, productFactory, companyFactory,$routeParams, '$cookieStore') {
+app.controller('addProductsController', ['$scope', '$location', 'productFactory','companyFactory','$routeParams', '$cookieStore', function ($scope, $location, productFactory, companyFactory,$routeParams, $cookieStore) {
 
   // Initialize Required Attributes
 
