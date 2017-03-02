@@ -7,7 +7,7 @@ app.controller('loginController', ['$scope', '$location', 'userFactory', '$cooki
   _this.error_messages = [];
 
   // -------------------------------------------------------------------------
-  //                            Create New User
+  //                            Login User
   // -------------------------------------------------------------------------
   _this.login = function () {
     console.log(_this.existingUser);
@@ -20,6 +20,18 @@ app.controller('loginController', ['$scope', '$location', 'userFactory', '$cooki
         _this.existingUser = {};
         $location.url('/userdashboard');
       }
+    });
+  };
+
+  // -------------------------------------------------------------------------
+  //                            Login User
+  // -------------------------------------------------------------------------
+  _this.logout = function () {
+    userFactory.logout(function (dataFromServer) {
+      _this.existingUser = {};
+      _this.success = false;
+      _this.error_messages = ["Successfully Logged Out"];
+      $location.url('/');
     });
   };
 

@@ -18,7 +18,8 @@ app.config( function ($routeProvider) {
 
     .when('/userdashboard', {
       templateUrl: 'partials/userDashboard.html',
-      controller: 'userDashboardController'
+      controller: 'userDashboardController',
+      controllerAs: 'DC'
     })
 
     .when('/register', {
