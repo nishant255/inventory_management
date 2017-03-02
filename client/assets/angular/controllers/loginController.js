@@ -1,6 +1,6 @@
 console.log("Loading Clientside loginController.js");
 
-app.controller('loginController', ['$scope', '$location', 'userFactory', function ($scope, $location, userFactory) {
+app.controller('loginController', ['$scope', '$location', 'userFactory', '$cookieStore',  function ($scope, $location, userFactory, $cookieStore) {
 
   var _this = this;
   _this.existingUser = {};

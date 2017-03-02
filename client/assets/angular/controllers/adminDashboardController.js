@@ -1,6 +1,6 @@
 console.log("Loading Clientside adminDashboardController.js");
 
-app.controller('adminDashboardController', ['$scope', '$location', 'productFactory', function ($scope, $location, productFactory) {
+app.controller('adminDashboardController', ['$scope', '$location', 'productFactory' , '$cookieStore', function ($scope, $location, productFactory, $cookieStore) {
 
   // Initialize Required Attributes
 

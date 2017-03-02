@@ -1,6 +1,6 @@
 console.log("Loading Clientside registerController.js");
 
-app.controller('registerController', ['$scope', '$location', 'userFactory', function ($scope, $location, userFactory) {
+app.controller('registerController', ['$scope', '$location', 'userFactory', '$cookieStore' function ($scope, $location, userFactory, $cookieStore) {
 
   var _this = this;
   _this.newUser = {};

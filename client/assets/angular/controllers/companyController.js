@@ -1,8 +1,8 @@
 console.log("Loading Clientside companyController.js");
 
-app.controller('companyController', ['$scope', '$location', 'companyfactory', function ($scope, $location, companyfactory) {
+app.controller('companyController', ['$scope', '$location', 'companyfactory','$cookieStore', function ($scope, $location, companyfactory, $cookieStore) {
 
-  // Initialize Required Attributes  
+  // Initialize Required Attributes
 
   // -------------------------------------------------------------------------
   //                            Add Required Methods

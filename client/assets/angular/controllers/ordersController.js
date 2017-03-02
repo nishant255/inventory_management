@@ -1,6 +1,6 @@
 console.log("Loading Clientside ordersController.js");
 
-app.controller('ordersController', ['$scope', '$location', function ($scope, $location) {
+app.controller('ordersController', ['$scope', '$location', '$cookieStore',function ($scope, $location, $cookieStore) {
 
   // Initialize Required Attributes
   $scope.orders = [
