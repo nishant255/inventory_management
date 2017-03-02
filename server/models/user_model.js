@@ -12,10 +12,11 @@ var UserSchema = new mongoose.Schema({
   last_name: { type:String, required:true, minlength: 2},
 
   address: [{
-    street: { type:String, required:true, minlength:2 },
-    city: { type:String, required:true, minlength:2 },
-    zipcode: { type:Number, required:true, minlength:5, maxlength:5 },
-    state: { type:String, required:true, minlength:5 }
+    name: { type:String, minlength:2 },
+    street: { type:String,  minlength:2 },
+    city: { type:String,  minlength:2 },
+    zipcode: { type:String, minlength:5, maxlength:5 },
+    state: { type:String, minlength:5 }
   }],
 
   phone_number: { type:Number, required:true, minlength: 10},

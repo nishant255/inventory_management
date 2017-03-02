@@ -31,7 +31,7 @@ app.config( function ($routeProvider) {
       controllerAs: 'IC'
     })
 
-    .when('/orders', {
+    .when('/orders/', {
       templateUrl: 'partials/orders.html',
       controller: 'ordersController'
     })
@@ -67,6 +67,7 @@ app.config( function ($routeProvider) {
       templateUrl: 'partials/order.html',
       controller: 'orderController'
     })
+
 
     .when('/companies/:id', {
       templateUrl: 'partials/company.html',

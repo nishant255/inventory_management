@@ -25,8 +25,9 @@ app.factory('productFactory', ['$http', function ($http) {
         callback(returned_data)
       })
     }
-    this.create = function(product,callback){
-      $http.post('/products/',product).then(function(returned_data){
+    this.create = function(product,company,callback){
+      product._company = company
+      $http.post('/products/',product,company).then(function(returned_data){
         console.log('returned form the server with the created company',returned_data.data);
         callback(returned_data);
         if (returned_data.data.errors) {

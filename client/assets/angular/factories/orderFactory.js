@@ -7,6 +7,7 @@ app.factory('orderFactory', ['$http', function ($http) {
   function OrderFactory() {
 
     var _this = this;
+    var order = {}
 
     // -------------------------------------------------------------------------
     //                            Add Required Methods
@@ -32,6 +33,15 @@ app.factory('orderFactory', ['$http', function ($http) {
         callback(returned_data);
       })
     }
+    this.giveOrder = function(order_data){
+      console.log('got to order factory with order',order_data);
+      order = order_data
+    }
+    this.getOrder = function(callback){
+      console.log('getting the order from the factory');
+      callback(order)
+    }
+
   }
   return new OrderFactory();
 }]);
