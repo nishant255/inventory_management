@@ -33,13 +33,29 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
         console.log("User from Server");
         console.log(dataFromServer);
         user = dataFromServer.data;
+        console.log(user.user._id);
+        console.log("Logged user in factory");
         $cookieStore.put('logged-in', true);
-        $cookieStore.put('user_id', user._id);
+        $cookieStore.put('user_id', user.user._id);
         if (typeof(callback) == 'function') {
           callback(user);
         }
       });
     };
+
+    // -------------------------------------------------------------------------
+    //                            Logout User
+    // -------------------------------------------------------------------------
+    _this.logout = function (callback) {
+      console.log("Logging Out");
+      user = {};
+      $cookieStore.remove('logged-in');
+      $cookieStore.remove('user_id');
+      if (typeof(callback) === 'function') {
+        callback("Successfully Logged Out");
+      }
+    };
+
 
   }
   return new UserFactory();
