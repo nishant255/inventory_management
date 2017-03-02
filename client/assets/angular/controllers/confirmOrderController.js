@@ -11,4 +11,5 @@ app.controller('confirmOrderController', ['$scope', '$location', 'orderFactory',
   orderFactory.getOrder(function(order){
     $scope.order = order
   })
+
 }]);

@@ -12,7 +12,6 @@ app.controller('userDashboardController', ['$scope', '$location', 'productFactor
       $location.url('/login');
     }
   };
-
   CheckingUser();
 
 }]);

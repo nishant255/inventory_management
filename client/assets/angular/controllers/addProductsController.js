@@ -1,7 +1,6 @@
 console.log("Loading Clientside addProductsController.js");
 
 app.controller('addProductsController', ['$scope', '$location', 'productFactory','companyFactory','orderFactory','$routeParams', '$cookieStore', function ($scope, $location, productFactory, companyFactory, orderFactory, $routeParams, $cookieStore) {
-
   // Initialize Required Attributes
 
   // -------------------------------------------------------------------------
@@ -50,4 +49,6 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
     console.log('clicked confirm order',$scope.order);
     // orderFactory.giveOrder($scope.order)
   }
+  console.log($cookieStore.get('user_id'))
+
 }]);

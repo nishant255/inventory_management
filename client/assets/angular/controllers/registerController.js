@@ -24,4 +24,5 @@ app.controller('registerController', ['$scope', '$location', 'userFactory', '$co
     });
   };
 
+
 }]);
