@@ -14,23 +14,28 @@
       <h5 class="header col s12 light">Login Below</h5>
     </div>
     <br><br>
-    <form class="col">
+    <form class="col" ng-submit="LC.login()">
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">email</i>
-          <input id="email" type="email" class="validate" required>
+          <input id="email" type="email" class="validate" ng-model="LC.existingUser.email" required>
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">vpn_key</i>
-          <input id="password" type="password" class="validate" required>
+          <input id="password" type="password" ng-model="LC.existingUser.password" class="validate" required>
           <label for="password">Password</label>
         </div>
       </div>
       <button class="btn waves-effect waves-light orange" type="submit" name="action">Login
       </button>
     </form>
+    <div class='browser_default' ng-if="LC.success === false">
+      <ul ng-repeat="message in LC.error_messages">
+        <li class="error_messages">- {{message}}</li>
+      </ul>
+    </div>
   </div>
 </div>

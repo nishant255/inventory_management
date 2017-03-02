@@ -27,7 +27,7 @@
       <div class="row">
         <div class="input-field col s4">
           <i class="material-icons prefix">email</i>
-          <input id="email" type="email" class="validate" ng-model="RC.newUser.email">
+          <input id="email" type="email" class="validate" ng-model="RC.newUser.email" required>
           <label for="email">Email</label>
         </div>
         <div class="input-field col s4">
@@ -48,12 +48,9 @@
         </button>
       </div>
     </form>
-    {{RC.success}}
-    <!-- {{RC.error_messages}} -->
-    <div class='browser_default' ng-if="RC.success === false" ng-repeat="message in RC.error_messages">
-      <p >{{message}}</p>
+    <div class='browser_default' ng-if="RC.success === false">
       <ul ng-repeat="message in RC.error_messages">
-        <li>{{message}}</li>
+        <li class="error_messages">- {{message}}</li>
       </ul>
     </div>
   </div>

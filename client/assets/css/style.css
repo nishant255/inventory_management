@@ -6,10 +6,6 @@ a {
   color:black
 }
 
-* {
-  text-align: center;
-}
-
 .scroll{
   overflow: scroll;
   height: 80%
@@ -18,4 +14,8 @@ a {
 .bold {
   font-weight: bold;
 
+}
+
+.error_messages {
+  color: red;
 }
