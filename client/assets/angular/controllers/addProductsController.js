@@ -1,6 +1,6 @@
 console.log("Loading Clientside addProductsController.js");
 
-app.controller('addProductsController', ['$scope', '$location', 'productFactory','companyFactory','orderFactory','$routeParams', function ($scope, $location, productFactory, companyFactory, orderFactory, $routeParams) {
+app.controller('addProductsController', ['$scope', '$location', 'productFactory','companyFactory','orderFactory','$routeParams', '$cookieStore', function ($scope, $location, productFactory, companyFactory, orderFactory, $routeParams, $cookieStore) {
 
   // Initialize Required Attributes
 
@@ -45,6 +45,7 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
       $scope.products[i].quantity = $scope.order.quantity[i]
     }
     $scope.order.products = $scope.products
+    $scope.order.buyPrice
     // console.log($scope.order);
     console.log('clicked confirm order',$scope.order);
     // orderFactory.giveOrder($scope.order)

@@ -1,12 +1,18 @@
 console.log("Loading Clientside userDashboardController.js");
 
-app.controller('userDashboardController', ['$scope', '$location', 'productFactory', function ($scope, $location, productFactory) {
+app.controller('userDashboardController', ['$scope', '$location', 'productFactory', '$cookieStore',  function ($scope, $location, productFactory, $cookieStore) {
 
-  // Initialize Required Attributes
+  var _this = this;
 
   // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
+  var CheckingUser = function () {
+    if ($cookieStore.get('logged-in') === false) {
+      $location.url('/login');
+    }
+  };
 
+  CheckingUser();
 
 }]);

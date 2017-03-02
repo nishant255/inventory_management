@@ -75,14 +75,77 @@ function UserController() {
       res.json({success: false, error_messages: error_messages});
       return;
     }
-    User.findOne({email: req.body.email}, function (err, user) {
+    var newCreatedUser = new User({
+      first_name: req.body.first_name.toLowerCase(),
+      last_name: req.body.last_name,
+      email: req.body.email,
+      phone_number: req.body.phone_number,
+      password: req.body.password,
+      admin: 2
+    });
+    newCreatedUser.save(function (err, user) {
       if (err) {
-        console.log("Error while Finding User");
+        console.log("Email already Registered");
+        error_messages.push("Email Already Registered! Please Login.");
+        res.json({success: false, error_messages: error_messages});
         console.log(err);
+        throw err;
+      }
+      res.json({success: true, user: user});
+    });
+  };
+
+  // -------------------------------------------------------------------------
+  //                      Create or Return Existing User
+  // -------------------------------------------------------------------------
+  _this.loginUser = function (req, res) {
+    console.log("Logging User");
+    console.log(req.body);
+    error_messages = [];
+    if (!req.body.email) {
+      console.log("No email");
+      error_messages.push("Email is Required");
+      success = false;
+    }
+    if (req.body.email.length < 5) {
+      console.log("Email has to be 5 or more Characters");
+      error_messages.push("Email has to be 5 or more Characters");
+      success = false;
+    }
+    if (!req.body.password) {
+      console.log("No password");
+      error_messages.push("Password is Required");
+      success = false;
+    }
+    if (req.body.password.length < 4) {
+      console.log("Password has to be 4 or more Characters");
+      error_messages.push("Password has to be 4 or more Characters");
+      success = false;
+    }
+    if (!success) {
+      res.json({success: false, error_messages: error_messages});
+      return;
+    }
+    User.findOne({
+      email: req.body.email
+    }, function (err, user) {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+      if (!user) {
+            error_messages.push("Invalid Email or Password.");
+            res.json({success: false, error_messages: error_messages});
       } else {
-        if (!user) {
-          console.log("User Not Found");
-        }
+        user.comparePassword(req.body.password, function (err, isMatch) {
+          if (isMatch && !err) {
+            // var token = jwt.en
+            res.json({success: true, user:user});
+          } else {
+            error_messages.push("Invalid Email or Password.");
+            res.json({success: false, error_messages: error_messages});
+          }
+        });
       }
     });
   };

@@ -1,13 +1,14 @@
 console.log("Loading Master App JS");
 
-var app = angular.module('app', ['ngRoute', 'ngMessages']);
+var app = angular.module('app', ['ngRoute', 'ngMessages', 'ngCookies']);
 
 app.config( function ($routeProvider) {
 
   $routeProvider
     .when('/', {
       templateUrl: 'partials/login.html',
-      controller: 'loginController'
+      controller: 'loginController',
+      controllerAs: 'LC'
     })
 
     .when('/admindashboard', {
