@@ -5,7 +5,7 @@ app.controller('userDashboardController', ['$scope', '$location', 'productFactor
   var _this = this;
 
   // -------------------------------------------------------------------------
-  //                            Add Required Methods
+  //                            Check Logged In User
   // -------------------------------------------------------------------------
   var CheckingUser = function () {
     if (!$cookieStore.get('logged-in')) {
@@ -19,6 +19,9 @@ app.controller('userDashboardController', ['$scope', '$location', 'productFactor
   };
   CheckingUser();
 
+  // -------------------------------------------------------------------------
+  //                            Log Out User
+  // -------------------------------------------------------------------------
   _this.logout = function () {
     userFactory.logout(function (factoryResponse) {
       console.log(factoryResponse);

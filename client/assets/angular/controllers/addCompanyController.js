@@ -6,13 +6,28 @@ app.controller('addCompanyController', ['$scope', '$location', 'productFactory',
   var self = this;
 
   // -------------------------------------------------------------------------
-  //                            Add Required Methods
+  //                            Check Logged In User
   // -------------------------------------------------------------------------
   var CheckingUser = function () {
-    console.log("Removing User");
-    $cookieStore.remove('logged-in');
+    if (!$cookieStore.get('logged-in')) {
+      console.log("Not Logged In");
+      $location.url('/');
+    } else {
+      console.log("logged in");
+
+      console.log($cookieStore.get('user_id'));
+    }
   };
   CheckingUser();
+
+  // -------------------------------------------------------------------------
+  //                            Log Out User
+  // -------------------------------------------------------------------------
+  _this.logout = function () {
+    userFactory.logout(function (factoryResponse) {
+      console.log(factoryResponse);
+    });
+  };
 
   // -------------------------------------------------------------------------
   //                            Create Company

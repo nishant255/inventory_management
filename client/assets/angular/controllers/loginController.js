@@ -24,6 +24,22 @@ app.controller('loginController', ['$scope', '$location', 'userFactory', '$cooki
   };
 
   // -------------------------------------------------------------------------
+  //                            Check Logged In User
+  // -------------------------------------------------------------------------
+  var CheckingUser = function () {
+    if (!$cookieStore.get('logged-in')) {
+      console.log("Not Logged In");
+      // $location.url('/');
+    } else {
+      $location.url('/userdashboard');
+    }
+  };
+  CheckingUser();
+
+
+
+
+  // -------------------------------------------------------------------------
   //                            Login User
   // -------------------------------------------------------------------------
   _this.logout = function () {
