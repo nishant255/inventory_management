@@ -1,7 +1,16 @@
 <nav>
-  <a href="#!/dashboard">Dashboard</a> - <a href="#!/inventory">Inventory</a> - <a href="#!/orders">Orders</a> - <a href="#!/companies">Companies</a> - <a href='#!/' ng-click="DC.logout()">Logout</a>
-  <!-- Add your Navigation Here -->
-</nav>
+    <div class="nav-wrapper">
+      <a href="#!/userdashboard" class="brand-logo center">Inventory Management - Dashboard</a>
+      <ul class="left hide-on-med-and-down">
+        <li class="active"><a href="#!/userdashboard">Dashboard</a></li>
+        <li><a href="#/inventory">Inventory</a></li>
+        <li><a href="#/orders">Orders</a></li>
+        <li><a href="#/companies">Companies</a></li>
+        <li><a href="#/" ng-click="DC.logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
 <div class='red lighten-2'>
   <h1>Dashboard</h1>
   <div class="container">

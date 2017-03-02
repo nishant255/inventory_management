@@ -24,5 +24,18 @@ app.controller('registerController', ['$scope', '$location', 'userFactory', '$co
     });
   };
 
+  // -------------------------------------------------------------------------
+  //                            Check Logged In User
+  // -------------------------------------------------------------------------
+  var CheckingUser = function () {
+    if (!$cookieStore.get('logged-in')) {
+      console.log("Not Logged In");
+      // $location.url('/');
+    } else {
+      $location.url('/userdashboard');
+    }
+  };
+  CheckingUser();
+
 
 }]);
