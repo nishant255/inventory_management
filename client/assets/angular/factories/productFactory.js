@@ -36,6 +36,11 @@ app.factory('productFactory', ['$http', function ($http) {
         }
       })
     }
+    this.receiveOrder = function(order,callback){
+      console.log('got to the product factory with the received order',order);
+
+
+    }
   }
   return new ProductFactory();
 }]);

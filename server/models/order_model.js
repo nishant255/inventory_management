@@ -5,10 +5,12 @@ var mongoose = require('mongoose'),
 var order = new mongoose.Schema({
   sender: {type: Object, required:false},
   recipient: {type: Object, required:true},
+  received: {type:Boolean, required:true},
   products: [{
     name:{ type: String, required:true},
     quantity: { type:Number, required: true},
     buyPrice: { type:Number, required: true},
+    _company: { type: Schema.Types.ObjectId, ref: 'Company', required:true}
   }],
   address: {
     name: { type:String, required:true, minlength:2 },

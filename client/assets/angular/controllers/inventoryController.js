@@ -2,6 +2,7 @@ console.log("Loading Clientside inventoryController.js");
 
 app.controller('inventoryController', ['$scope', '$location', '$cookieStore',function ($scope, $location, $cookieStore) {
 
+  var _this = this
   // Initialize Required Attributes
   $scope.products = [
     {

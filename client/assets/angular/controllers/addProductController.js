@@ -6,6 +6,8 @@ app.controller('addProductController', ['$scope', '$location', 'productFactory',
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------
+  var _this = this
+
   var CheckingUser = function () {
     if (!$cookieStore.get('logged-in')) {
       console.log("Not Logged In");

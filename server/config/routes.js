@@ -25,7 +25,9 @@ module.exports = function (app) {
   app.get('/products', products.index);
   app.post('/products', products.create);
 
+  app.get('/orders/notReceived', orders.indexNotReceived);
   app.get('/orders/:id', orders.show);
   app.get('/orders', orders.index);
+  app.post('/orders/receive/:id', orders.receive);
   app.post('/orders', orders.create);
 };

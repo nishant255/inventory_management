@@ -5,6 +5,9 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------
+
+  var _this = this
+
   var CheckingUser = function () {
     if (!$cookieStore.get('logged-in')) {
       console.log("Not Logged In");
@@ -74,6 +77,7 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
     $scope.order.products = $scope.products
     $scope.order.recipient = $scope.user
     $scope.order.sender = $scope.company
+    $scope.order.received = false;
     delete $scope.order.buyPrice
     delete $scope.order.quantity
     console.log('clicked confirm order',$scope.order);
