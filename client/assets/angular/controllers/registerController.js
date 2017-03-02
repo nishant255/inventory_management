@@ -6,6 +6,7 @@ app.controller('registerController', ['$scope', '$location', 'userFactory', '$co
   _this.newUser = {};
   _this.error_messages = [];
 
+
   // -------------------------------------------------------------------------
   //                            Create New User
   // -------------------------------------------------------------------------

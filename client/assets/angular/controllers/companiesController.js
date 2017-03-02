@@ -1,6 +1,6 @@
 console.log("Loading Clientside companiesController.js");
 
-app.controller('companiesController', ['$scope', '$location', '$cookieStore',function ($scope, $location, $cookieStore) {
+app.controller('companiesController', ['$scope', '$location', '$cookieStore', 'userFactory',function ($scope, $location, $cookieStore, userFactory) {
 
   // Initialize Required Attributes
   $scope.companies = [
@@ -60,6 +60,8 @@ app.controller('companiesController', ['$scope', '$location', '$cookieStore',fun
   // $scope.sortType = 'name';
   // $scope.sortReverse = true;
   // $scope.search = '';
+  var _this = this;
+
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User

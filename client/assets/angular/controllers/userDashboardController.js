@@ -14,7 +14,7 @@ app.controller('userDashboardController', ['$scope', '$location', 'productFactor
     } else {
       console.log("logged in");
 
-      console.log($cookieStore.get('user_id'));
+      console.log($cookieStore);
     }
   };
   CheckingUser();

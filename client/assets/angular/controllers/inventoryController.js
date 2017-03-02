@@ -1,6 +1,6 @@
 console.log("Loading Clientside inventoryController.js");
 
-app.controller('inventoryController', ['$scope', '$location', '$cookieStore',function ($scope, $location, $cookieStore) {
+app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'userFactory',function ($scope, $location, $cookieStore, userFactory) {
 
   // Initialize Required Attributes
   $scope.products = [
@@ -24,6 +24,8 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore',fun
   $scope.sortType = 'name';
   $scope.sortReverse = true;
   $scope.search = '';
+
+  var _this = this;
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User

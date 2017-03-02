@@ -1,8 +1,15 @@
-<!-- inventory page - sortable and filterable table of products -->
 <nav>
-  <a href="#!/dashboard">Dashboard</a> - <a href="#!/inventory">Inventory</a> - <a href="#!/orders">Orders</a> - <a href="#!/companies">Companies</a> - <a href='#!/logout'>Logout</a>
-  <!-- Add your Navigation Here -->
-</nav>
+    <div class="orange nav-wrapper">
+      <a href="#!/userdashboard" class="brand-logo right">BMN Inventory</a>
+      <ul class="left hide-on-med-and-down">
+        <li><a href="#!/userdashboard">Dashboard</a></li>
+        <li class="active"><a href="#!/inventory">Inventory</a></li>
+        <li><a href="#!/orders">Orders</a></li>
+        <li><a href="#!/companies">Companies</a></li>
+        <li><a href="#!/" ng-click="IC.logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
 
 <h1>Inventory</h1>
 

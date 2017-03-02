@@ -1,6 +1,6 @@
 console.log("Loading Clientside ordersController.js");
 
-app.controller('ordersController', ['$scope', '$location', '$cookieStore',function ($scope, $location, $cookieStore) {
+app.controller('ordersController', ['$scope', '$location', '$cookieStore', 'userFactory',function ($scope, $location, $cookieStore, userFactory) {
 
   // Initialize Required Attributes
   $scope.orders = [
@@ -41,6 +41,8 @@ app.controller('ordersController', ['$scope', '$location', '$cookieStore',functi
   // $scope.sortType = 'name';
   // $scope.sortReverse = true;
   // $scope.search = '';
+  var _this = this;
+
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User

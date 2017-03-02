@@ -4,6 +4,8 @@ app.controller('productController', ['$scope', '$location', 'productFactory','$c
 
   // Initialize Required Attributes
   $scope.product;
+  var _this = this;
+
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------

@@ -6,6 +6,7 @@ app.controller('loginController', ['$scope', '$location', 'userFactory', '$cooki
   _this.existingUser = {};
   _this.error_messages = [];
 
+
   // -------------------------------------------------------------------------
   //                            Login User
   // -------------------------------------------------------------------------

@@ -4,6 +4,8 @@ app.controller('orderController', ['$scope', '$location', 'orderFactory', '$cook
 
   // Initialize Required Attributes
   $scope.order;
+  var _this = this;
+
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User

@@ -17,6 +17,7 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
         console.log("User from Server");
         console.log(dataFromServer);
         user = dataFromServer.data;
+        console.log(user);
         $cookieStore.put('logged-in', true);
         $cookieStore.put('user_id', user._id);
         if (typeof(callback) == 'function') {
@@ -33,10 +34,14 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
         console.log("User from Server");
         console.log(dataFromServer);
         user = dataFromServer.data;
-        console.log(user.user._id);
+        console.log(user);
+        console.log(user.success);
+        console.log(user.user);
+        if (user.success) {
+          $cookieStore.put('logged-in', true);
+          $cookieStore.put('user_id', user.user._id);
+        }
         console.log("Logged user in factory");
-        $cookieStore.put('logged-in', true);
-        $cookieStore.put('user_id', user.user._id);
         if (typeof(callback) == 'function') {
           callback(user);
         }
