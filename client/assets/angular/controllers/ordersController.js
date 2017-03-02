@@ -1,6 +1,6 @@
 console.log("Loading Clientside ordersController.js");
 
-app.controller('ordersController', ['$scope', '$location', '$cookieStore',function ($scope, $location, $cookieStore) {
+app.controller('ordersController', ['$scope', '$location','orderFactory', '$cookieStore',function ($scope, $location, orderFactory,$cookieStore) {
 
   // Initialize Required Attributes
   $scope.orders = [
@@ -48,4 +48,11 @@ app.controller('ordersController', ['$scope', '$location', '$cookieStore',functi
   $scope.show = function(order){
     $location.url('/orders/'+order._id);
   }
+  orderFactory.index(function(orders_data){
+    console.log('returned to the controller with the orders',orders_data.data);
+    if(orders_data.data.errors){
+      $scope.errors = orders_data.data.errors
+    }
+    $scope.orders = orders_data.data
+  })
 }]);

@@ -1,6 +1,6 @@
 console.log("Loading Clientside addProductsController.js");
 
-app.controller('addProductsController', ['$scope', '$location', 'productFactory','companyFactory','orderFactory','$routeParams', '$cookieStore', function ($scope, $location, productFactory, companyFactory, orderFactory, $routeParams, $cookieStore) {
+app.controller('addProductsController', ['$scope', '$location', 'productFactory','companyFactory','orderFactory','userFactory','$routeParams', '$cookieStore', function ($scope, $location, productFactory, companyFactory, orderFactory, userFactory ,$routeParams, $cookieStore) {
   // Initialize Required Attributes
 
   // -------------------------------------------------------------------------
@@ -9,29 +9,34 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
   $scope.products = []
   $scope.order = {}
 
+  userFactory.findUser($cookieStore.get('user_id'),function(user){
+    console.log('returned from user factory with found user',user);
+    $scope.user = user
+  })
+
   companyFactory.findCompany($routeParams.company_id,function(company){
     console.log('returned from the controller with the company',company.data);
     $scope.company = company.data
   })
 
   $scope.start = function(){
-    console.log('you clicked Add to order with this product',$scope.product);
+    console.log('you clicked Add to order with this product',$scope._product);
     // $scope.products.push($scope.order.product)
-    if($scope.product == undefined){
+    if($scope._product == undefined){
       console.log('did not select a product');
       return
     }
     var contains = false
     if($scope.products.length == 0){
-      $scope.products.push($scope.product)
+      $scope.products.push($scope._product)
     }
     for (var i = 0; i < $scope.products.length; i++) {
-      if($scope.product==$scope.products[i]){
+      if($scope._product==$scope.products[i]){
         contains = true
       }
     }
     if(contains == false){
-      $scope.products.push($scope.product)
+      $scope.products.push($scope._product)
     }
   }
   $scope.confirmOrder = function(){
@@ -44,11 +49,20 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
       $scope.products[i].quantity = $scope.order.quantity[i]
     }
     $scope.order.products = $scope.products
-    $scope.order.buyPrice
-    // console.log($scope.order);
+    $scope.order.recipient = $scope.user
+    $scope.order.sender = $scope.company
+    delete $scope.order.buyPrice
+    delete $scope.order.quantity
     console.log('clicked confirm order',$scope.order);
-    // orderFactory.giveOrder($scope.order)
+    orderFactory.create($scope.order,function(order_data){
+      console.log('returned from order factory with created order',order_data.data);
+      if(order_data.data.errors){
+        console.log('there were errors creating order',order_data.data.errors);
+        $scope.errors = order_data.data.errors
+      }
+      $location.url('/userdashboard')
+
+    })
   }
-  console.log($cookieStore.get('user_id'))
 
 }]);

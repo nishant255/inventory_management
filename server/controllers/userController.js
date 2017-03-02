@@ -163,6 +163,22 @@ function UserController() {
       }
     });
   };
+  // -------------------------------------------------------------------------
+  //                           Get a user
+  // -------------------------------------------------------------------------
+
+  _this.getUser = function(req,res){
+    console.log('got to the server controller with user id',req.params.id);
+    User.findById(req.params.id,function(err,result){
+      if(err){
+        console.log('there was an error finding user',err);
+        res.json(err);
+      } else {
+        console.log('successfully found user',result);
+        res.json(result)
+      }
+    })
+  }
 
 
 

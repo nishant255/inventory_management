@@ -14,9 +14,9 @@ app.factory('orderFactory', ['$http', function ($http) {
     // -------------------------------------------------------------------------
 
     this.index = function(callback){
-      console.log('got to the company factory, about to go to the server');
-      $http.get('/companies').then(function(returned_data){
-        console.log('returned from the server with all companies: ',returned_data.data);
+      console.log('got to the order factory, about to go to the server');
+      $http.get('/orders').then(function(returned_data){
+        console.log('returned from the server with all orders: ',returned_data.data);
         callback(returned_data);
       })
     }

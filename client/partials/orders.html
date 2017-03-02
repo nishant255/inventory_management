@@ -1,11 +1,13 @@
 <!-- orders page - sortable and filterable table of products -->
 <nav>
-  <a href="#!/dashboard">Dashboard</a> - <a href="#!/inventory">Inventory</a> - <a href="#!/orders">Orders</a> - <a href="#!/companies">Companies</a> - <a href='#!/logout'>Logout</a>
+  <a href="#!/userdashboard">Dashboard</a> - <a href="#!/inventory">Inventory</a> - <a href="#!/orders">Orders</a> - <a href="#!/companies">Companies</a> - <a href='#!/logout'>Logout</a>
   <!-- Add your Navigation Here -->
 </nav>
 
 <h1>Orders</h1>
-
+<div ng-repeat='error in errors'>
+  <p>{{error.message}}</p>
+</div>
 <input ng-model="search" placeholder="search products...">
 
 <div class="scroll">
@@ -15,9 +17,9 @@
     <br>
     <a href="#!/orders/{{order._id}}">View Order</a>
     <br>
-    <span>Placed By: {{order.recipient.email}}</span>
+    <span>Placed By: {{order.recipient.data.first_name}}</span>
     <br>
-    <span>Placed On: {{order.created_at}}</span>
+    <span>Placed On: {{order.createdAt}}</span>
     <br>
     <table>
       <thead>
@@ -33,7 +35,7 @@
           <td ng-bind="product._id"></td>
           <td ng-bind="product.name"></td>
           <td ng-bind="product.quantity"></td>
-          <td ng-bind="product.price"></td>
+          <td ng-bind="product.sellPrice"></td>
         </tr>
       </tbody>
     </table>

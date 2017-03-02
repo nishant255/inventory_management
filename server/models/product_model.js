@@ -7,6 +7,7 @@ var product = new mongoose.Schema({
   buyPrice: { type:Number, required: false},
   sellPrice: { type:Number, required: false},
   quantity: { type:Number, required: false},
+  received: { type:Boolean, required: true},
 _company: { type: Schema.Types.ObjectId, ref: 'Company', required:true},
 }, {timestamps: true});
 

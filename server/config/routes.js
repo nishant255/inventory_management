@@ -17,8 +17,10 @@ module.exports = function (app) {
   app.get('/companies', companies.index);
   app.post('/companies', companies.create);
 
-  app.post('/user', userController.createUser);
+  app.get('/user/:id', userController.getUser);
+  app.post('/user/', userController.createUser);
   app.post('/user_login', userController.loginUser);
+
   app.get('/products/:id', products.show);
   app.get('/products', products.index);
   app.post('/products', products.create);

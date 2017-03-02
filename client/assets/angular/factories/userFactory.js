@@ -56,6 +56,16 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
       }
     };
 
+    // -------------------------------------------------------------------------
+    //                           Find User
+    // -------------------------------------------------------------------------
+    _this.findUser = function(user_id,callback){
+      $http.get('/user/'+user_id).then(function(user_data){
+        console.log('returned from the server controller with the user_data',user_data.data);
+        callback(user_data)
+      })
+    }
+
 
   }
   return new UserFactory();
