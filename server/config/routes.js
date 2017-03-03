@@ -29,6 +29,7 @@ module.exports = function (app) {
   app.post('/products/update', products.update);
   app.post('/products/name/:name', products.setSellPriceToZero);
   app.get('/products/withSellPrice', products.indexWithSellPrice);
+  app.get('/products/forSale', products.indexforSale);
   app.get('/products/:id', products.show);
   app.get('/products', products.index);
   app.post('/products', products.create);

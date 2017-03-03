@@ -84,9 +84,21 @@ function ProductsController() {
   }
   _this.indexWithSellPrice = function(req, res){
     console.log('got to the server function indexWithSellPrice');
-    Product.find({sellPrice:{$gt:-1}},function(err,result){
+    Product.find({sellPrice:{$gt:-1}}).populate('_company').exec(function(err,result){
       if(err){
         console.log('there was an error finding items with sellprice',err);
+        res.json(err)
+      } else {
+        console.log('found all items with sellprice',result);
+        res.json(result)
+      }
+    })
+  }
+  _this.indexforSale = function(req, res){
+    console.log('got to the server function indexforSale');
+    Product.find({sellPrice:{$gt:0}}).populate('_company').exec(function(err,result){
+      if(err){
+        console.log('there was an error finding items with sellprice',err)
         res.json(err)
       } else {
         console.log('found all items with sellprice',result);

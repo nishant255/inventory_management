@@ -59,5 +59,23 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
       $scope.findAllProductsWithSellPrice()
     })
   }
-  $scope.findAllProductsWithSellPrice()
+  $scope.findAllProductsforSale = function(){
+    productFactory.findAllProductsforSale(function(products){
+      console.log('back from the factory with all the products with sellprices',products.data);
+      $scope.products = products.data
+    })
+  }
+
+  var getCurrentUser = function () {
+    userFactory.getUser(function (currentUser) {
+      _this.currentUser = currentUser;
+      if(_this.currentUser.admin==2){
+        console.log('normal user logged in');
+        $scope.findAllProductsforSale()
+      } else {
+        $scope.findAllProductsWithSellPrice()
+      }
+    });
+  };
+  getCurrentUser();
 }]);

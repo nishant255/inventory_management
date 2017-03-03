@@ -58,8 +58,18 @@ app.factory('productFactory', ['$http', function ($http) {
         console.log('got back from the server with returned_data',returned_data.data);
         callback(returned_data)
       })
-
     }
+    this.findAllProductsforSale = function(callback){
+      console.log('got to the product Factory and about to get all products  for sale');
+      $http.get('/products/forSale').then(function(returned_data){
+        console.log('back from the server with products with sellprices',returned_data.data);
+        if(returned_data.data.errors){
+          console.log('there were errors',returned_data.data.errors);
+        }
+        callback(returned_data)
+      })
+    }
+
   }
   return new ProductFactory();
 }]);
