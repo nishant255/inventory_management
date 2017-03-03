@@ -1,11 +1,11 @@
 <nav>
-
   <div class="orange nav-wrapper">
     <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="DC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="DC.currentUser.admin === 1"><i>Admin</i></span></a>
     <ul>
       <li class="active"><a href="#!/userdashboard">Dashboard</a></li>
       <li><a href="#!/inventory">Inventory</a></li>
       <li><a href="#!/orders">Orders</a></li>
+      <li><a href="#!/add_order">Add Order</a></li>
       <li><a ng-if="DC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
       <li><a href="#!/companies">Companies</a></li>
       <li><a href="#!/" ng-click="DC.logout()">Logout</a></li>
@@ -15,7 +15,6 @@
 <div class='lighten-2'>
   <h1 class="center_title">Dashboard</h1>
   <div class="container">
-    <p><a class="waves-effect orange btn" href='#!/add_order'>Add Order</a></p>
     <div><h5>Incoming Shipments</h5>
       <p ng-repeat="order in orders">{{order._id}}</p>
     </div>

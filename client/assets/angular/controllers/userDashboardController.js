@@ -33,6 +33,9 @@ app.controller('userDashboardController', ['$scope', '$location', 'productFactor
   var getCurrentUser = function () {
     userFactory.getUser(function (currentUser) {
       _this.currentUser = currentUser;
+      if (_this.currentUser.admin === 2) {
+        $location.url('/inventory');
+      }
     });
   };
   getCurrentUser();
