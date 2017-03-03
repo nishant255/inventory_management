@@ -14,15 +14,15 @@
 </nav>
 <div class='lighten-2'>
   <h1 class="center_title">Dashboard</h1>
-  <h2>Total Inventory Value: ${{totalvalue}}</h2>
+  <h4>Total Inventory Value: ${{totalvalue}}</h4>
   <div class="container">
     <p><a class="waves-effect blue btn" href='#!/add_order'>Add Order</a></p>
     <div><h5>Incoming Shipments</h5>
       <a href='/#!/orders/{{order._id}}' ng-repeat="order in orders">{{order.numProducts}} product(s) for {{order.recipient.data.email}} on {{order.createdAt | date:'medium'}}<br></a>
     </div>
-    <div><h5>Outgoing Orders</h5>
+    <!-- <div><h5>Outgoing Orders</h5>
       <p ng-repeat="userorder in userorders">{{order._id}}</p>
-    </div>
+    </div> -->
     <div><h5 class='waves-effect  orange waves-light btn' ng-click='isReversed=!isReversed'>Inventory</h5>
       <p ng-repeat="product in products | orderBy:createdAt:isReversed |
        limitTo:3">{{product.name}}</p>
