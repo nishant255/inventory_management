@@ -1,8 +1,11 @@
 {
   "name": "inventory_management",
   "version": "1.0.0",
-  "description": "",
+  "description": "inventory_management web application with node js backend and angular",
   "main": "server.js",
+  "engines": {
+    "node": "5.9.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/nishant255/inventory_management.git"
@@ -10,6 +13,7 @@
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.16.1",
+    "bower": "^1.8.0",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "jwt-simple": "^0.5.1",
@@ -20,9 +24,15 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node server.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "express",
+    "angular"
+  ],
   "author": "",
   "license": "ISC"
 }
