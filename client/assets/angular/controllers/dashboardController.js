@@ -1,8 +1,11 @@
-console.log("Loading Clientside userDashboardController.js");
+console.log("Loading Clientside dashboardController.js");
 
-app.controller('userDashboardController', ['$scope', '$location', 'productFactory', 'userFactory',  '$cookieStore',  function ($scope, $location, productFactory, userFactory, $cookieStore) {
+app.controller('dashboardController', ['$scope', '$location', 'productFactory', 'userFactory', 'orderFactory', '$cookieStore',  function ($scope, $location, productFactory, userFactory, orderFactory, $cookieStore) {
 
   var _this = this;
+  $scope.orders = []
+  $scope.products = []
+  $scope.isReversed = true
   // _this.currentUser = {};
 
   // -------------------------------------------------------------------------
@@ -36,5 +39,10 @@ app.controller('userDashboardController', ['$scope', '$location', 'productFactor
     });
   };
   getCurrentUser();
-
+  orderFactory.index(function(orders){
+    $scope.orders = orders.data
+  })
+  productFactory.index(function(products){
+    $scope.products = products.data
+  })
 }]);

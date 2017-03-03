@@ -9,6 +9,7 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
   $scope.sortReverse = true;
   $scope.search = '';
   $scope.errors = []
+  $scope.updatingObject = {}
 
   var _this = this;
 
@@ -49,9 +50,9 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
       $scope.products = products.data
     })
   }
-  $scope.updatePrice = function(index){
-    console.log('clicked updatePrice',$scope.products[index]);
-    productFactory.update($scope.products[index],function(product_data){
+  $scope.updatePrice = function(){
+    console.log('clicked updatePrice',$scope.updatingObject);
+    productFactory.update($scope.updatingObject,function(product_data){
       console.log('got back to the inventory controller with TEH product data',product_data);
       if(product_data.data.errors){
         $scope.errors = product_data.data.errors

@@ -52,9 +52,9 @@ app.factory('productFactory', ['$http', function ($http) {
         callback(returned_data)
       })
     }
-    this.update = function(product,callback){
-      console.log('got to the factory with the product',product);
-      $http.post('/products/update',product).then(function(returned_data){
+    this.update = function(updatingObject,callback){
+      console.log('got to the factory with the updatingObject',updatingObject);
+      $http.post('/products/update',updatingObject).then(function(returned_data){
         console.log('got back from the server with returned_data',returned_data.data);
         callback(returned_data)
       })

@@ -30,12 +30,13 @@
     <th><button href="#" ng-click='sortType="companyName"; sortReverse = !sortReverse'>Company Name</button></th>
   </thead>
   <tbody>
-    <tr ng-repeat="product in products track by $index">
+    <tr ng-repeat="product in products | filter:{name:search} ">
       <td name='id' ng-bind="product._id"></td>
-      <td ng-bind="product.name"></td>
+      <td class='bold'ng-bind="product.name"></td>
       <td ng-if='IC.currentUser.admin !== 2'>
-        <form ng-submit='updatePrice($index)'>
-          <input type="number" ng-model='products[$index].sellPrice' value='{{products[$index].sellPrice}}'>
+        <form ng-submit='updatePrice()'>
+          <input type='hidden' name='id' ng-model='updatingObject.id' value='{{products[$index]._id}}'></input>
+          <input type="number" ng-model='updatingObject.sellPrice' value='{{products[$index].sellPrice}}'>
           <input type="submit">
         </form>
       </td>

@@ -18,7 +18,7 @@
 <input ng-model="search" placeholder="search products...">
 
 <div class="scroll">
-  <div ng-repeat="company in companies">
+  <div ng-repeat="company in companies" ng-if='company.products.length>0'>
     <hr>
     <span class="bold">Company ID: {{company._id}}</span> - <span class="bold">Name: {{company.name}}</span>
     <br>

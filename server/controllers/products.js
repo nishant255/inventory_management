@@ -149,7 +149,7 @@ function ProductsController() {
   }
   _this.update = function(req,res){
     console.log('got to the server with the product',req.body);
-    Product.update({_id:req.body._id},req.body,function(err,result){
+    Product.update({_id:req.body.id},{$set:{sellPrice:req.body.sellPrice}},function(err,result){
       if(err){
         console.log('there was an error updating',err);
         res.json(err)

@@ -19,8 +19,8 @@ app.config( function ($routeProvider) {
     })
 
     .when('/userdashboard', {
-      templateUrl: 'partials/userDashboard.html',
-      controller: 'userDashboardController',
+      templateUrl: 'partials/dashboard.html',
+      controller: 'dashboardController',
       controllerAs: 'DC'
     })
 
@@ -39,6 +39,11 @@ app.config( function ($routeProvider) {
       templateUrl: 'partials/orders.html',
       controller: 'ordersController',
       controllerAs: 'OC'
+    })
+    .when('/orders/:id', {
+      templateUrl: 'partials/order.html',
+      controller: 'orderController',
+      controllerAs: 'OC2'
     })
 
     .when('/companies', {
