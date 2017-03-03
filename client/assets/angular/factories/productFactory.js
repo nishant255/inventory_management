@@ -69,6 +69,21 @@ app.factory('productFactory', ['$http', function ($http) {
         callback(returned_data)
       })
     }
+    this.getvalue = function(callback){
+      console.log('got to the product Factory and about to get all products  for sale');
+      $http.get('/products/forSale').then(function(returned_data){
+        console.log('back from the server with products with sellprices',returned_data.data);
+        if(returned_data.data.errors){
+          console.log('there were errors',returned_data.data.errors);
+        }
+        var sum = 0
+        for (var i = 0; i < returned_data.data.length; i++) {
+          sum += (returned_data.data[i].quantity*returned_data.data[i].sellPrice)
+          console.log('sum is' ,sum);
+        }
+        callback(sum)
+      })
+    }
 
   }
   return new ProductFactory();

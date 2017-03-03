@@ -36,7 +36,7 @@
 
 <div class="row">
   <div class="input-field col s12">
-    <input id="email" type="text" ng-model="search_inventory">
+    <input id="email" type="text" ng-model="search">
     <label for="email" data-error="wrong" data-success="right">Search Inventory</label>
   </div>
 </div>
@@ -50,15 +50,14 @@
         <th data-field="compname" ng-click='sortType="companyName"; sortReverse = !sortReverse'>Company Name</th>
     </tr>
   </thead>
-
   <tbody>
-    <tr ng-repeat="product in products | filter: search_inventory track by $index">
-      <td ng-bind="product.name"></td>
+    <tr ng-repeat="product in products | filter:{name:search} track by $index">
+      <td class='bold'ng-bind="product.name"></td>
       <td ng-if='IC.currentUser.admin !== 2'>
-        <form ng-submit='updatePrice($index)'>
+        <form ng-submit='updatePrice(product)'>
           <div class="row">
             <div class="input-field col s6">
-              <input id="sellPrice" type="number" ng-model='products[$index].sellPrice' value='{{products[$index].sellPrice}}'>
+              <input id="sellPrice" type="number" ng-model='product.sellPrice'>
             </div>
             <button class="btn waves-effect waves-light orange" type="submit" name="action">Update Sell Price
             </button>
