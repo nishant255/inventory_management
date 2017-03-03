@@ -1,11 +1,10 @@
 console.log("Loading Clientside addOrderController.js");
 
-app.controller('addOrderController', ['$scope', '$location', 'productFactory','companyFactory' , '$cookieStore', function ($scope, $location, productFactory, companyFactory, $cookieStore) {
+app.controller('addOrderController', ['$scope', '$location', 'productFactory','companyFactory' , '$cookieStore', 'userFactory', function ($scope, $location, productFactory, companyFactory, $cookieStore, userFactory) {
 
   var _this = this
   // Initialize Required Attributes
-  var _this = this;
-
+  $scope.message = {}
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------
@@ -15,8 +14,6 @@ app.controller('addOrderController', ['$scope', '$location', 'productFactory','c
       $location.url('/');
     } else {
       console.log("logged in");
-
-      console.log($cookieStore.get('user_id'));
     }
   };
   CheckingUser();
@@ -31,6 +28,19 @@ app.controller('addOrderController', ['$scope', '$location', 'productFactory','c
   };
 
   // -------------------------------------------------------------------------
+  //                            Get CurrentUser
+  // -------------------------------------------------------------------------
+  var getCurrentUser = function () {
+    userFactory.getUser(function (currentUser) {
+      _this.currentUser = currentUser;
+      if (_this.currentUser.admin === 2) {
+        $location.url('/inventory');
+      }
+    });
+  };
+  getCurrentUser();
+
+  // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
   $scope.companies = []
@@ -39,6 +49,10 @@ app.controller('addOrderController', ['$scope', '$location', 'productFactory','c
     $scope.companies = companies.data
   })
   $scope.start = function(){
+    if(!$scope.order){
+      $scope.message = {message:'Please select a company'}
+      return
+    }
     console.log('got to addOrderController with company',$scope.order);
     $location.url(`/add_order/${$scope.order.company._id}`)
   }

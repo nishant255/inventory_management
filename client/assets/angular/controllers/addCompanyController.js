@@ -1,6 +1,6 @@
 console.log("Loading Clientside addCompanyController.js");
 
-app.controller('addCompanyController', ['$scope', '$location', 'productFactory','companyFactory', '$cookieStore' ,function ($scope, $location, productFactory, companyFactory, $cookieStore) {
+app.controller('addCompanyController', ['$scope', '$location', 'productFactory','companyFactory', '$cookieStore', 'userFactory' ,function ($scope, $location, productFactory, companyFactory, $cookieStore, userFactory) {
 
 
   var self = this;
@@ -16,8 +16,6 @@ app.controller('addCompanyController', ['$scope', '$location', 'productFactory',
       $location.url('/');
     } else {
       console.log("logged in");
-
-      console.log($cookieStore.get('user_id'));
     }
   };
   CheckingUser();
@@ -30,6 +28,19 @@ app.controller('addCompanyController', ['$scope', '$location', 'productFactory',
       console.log(factoryResponse);
     });
   };
+
+  // -------------------------------------------------------------------------
+  //                            Get CurrentUser
+  // -------------------------------------------------------------------------
+  var getCurrentUser = function () {
+    userFactory.getUser(function (currentUser) {
+      _this.currentUser = currentUser;
+      if (_this.currentUser.admin === 2) {
+        $location.url('/inventory');
+      }
+    });
+  };
+  getCurrentUser();
 
   // -------------------------------------------------------------------------
   //                            Create Company

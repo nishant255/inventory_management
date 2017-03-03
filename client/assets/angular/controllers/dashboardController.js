@@ -3,10 +3,11 @@ console.log("Loading Clientside dashboardController.js");
 app.controller('dashboardController', ['$scope', '$location', 'productFactory', 'userFactory', 'orderFactory', '$cookieStore',  function ($scope, $location, productFactory, userFactory, orderFactory, $cookieStore) {
 
   var _this = this;
-  $scope.orders = []
-  $scope.products = []
-  $scope.isReversed = true
-  $scope.totalvalue = 0
+  $scope.orders = [];
+  $scope.products = [];
+  $scope.isReversed = true;
+  $scope.totalvalue = 0;
+  $scope.message = {}
   // _this.currentUser = {};
 
   // -------------------------------------------------------------------------
@@ -42,16 +43,21 @@ app.controller('dashboardController', ['$scope', '$location', 'productFactory', 
       }
     });
   };
+  getCurrentUser();
+
+  orderFactory.getMessage(function(message){
+    console.log('recieved success message',message);
+    $scope.message = message
+  })
 
   productFactory.getvalue(function(value){
-    $scope.totalvalue = value
-  })
+    $scope.totalvalue = value;
+  });
 
-  getCurrentUser();
   orderFactory.index(function(orders){
-    $scope.orders = orders.data
-  })
-  productFactory.index(function(products){
-    $scope.products = products.data
-  })
+    $scope.orders = orders.data;
+  });
+  productFactory.findAllProductsWithSellPrice(function(products){
+    $scope.products = products.data;
+  });
 }]);

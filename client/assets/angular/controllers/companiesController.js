@@ -3,65 +3,14 @@ console.log("Loading Clientside companiesController.js");
 app.controller('companiesController', ['$scope', '$location', '$cookieStore', 'userFactory','companyFactory',function ($scope, $location, $cookieStore, userFactory,companyFactory) {
 
   // Initialize Required Attributes
-  $scope.companies = [
-    {
-      _id: 1,
-      name: "Bob's Burgers",
-      products: [
-        {
-          _id: 42,
-          name: 'burger',
-          sellPrice: 150,
-          quantity: 32
-        },
-        {
-          _id: 42,
-          name: 'bun',
-          sellPrice: 150,
-          quantity: 32
-        }
-      ],
-      email: 'bob@bobbins.com',
-      phone: 8438302918,
-      address: {
-        street: '123 hacker way',
-        city: 'cupertino',
-        zipcode: 12345,
-        state: "CA"
-      }
-    },
-    {
-      _id: 2,
-      name: "Marcus's Caricatures",
-      products: [
-        {
-          _id: 3,
-          name: 'blackandwhite',
-          sellPrice: 42,
-          quantity: 100
-        },
-        {
-          _id: 5,
-          name: 'color',
-          sellPrice: 300,
-          quantity: 3
-        }
-      ],
-      email: 'marcus@meats.com',
-      phone: 8438302918,
-      address: {
-        street: '666 satan street',
-        city: 'hadesland',
-        zipcode: 66666,
-          state: "texas"
-      }
-    }
-  ];
+  $scope.companies = [];
   // $scope.sortType = 'name';
   // $scope.sortReverse = true;
   // $scope.search = '';
   var _this = this;
 
+
+  var _this = this
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User
@@ -72,8 +21,6 @@ app.controller('companiesController', ['$scope', '$location', '$cookieStore', 'u
       $location.url('/');
     } else {
       console.log("logged in");
-
-      console.log($cookieStore.get('user_id'));
     }
   };
   CheckingUser();
@@ -86,15 +33,74 @@ app.controller('companiesController', ['$scope', '$location', '$cookieStore', 'u
       console.log(factoryResponse);
     });
   };
+
+  // -------------------------------------------------------------------------
+  //                            Get CurrentUser
+  // -------------------------------------------------------------------------
+  var getCurrentUser = function () {
+    userFactory.getUser(function (currentUser) {
+      _this.currentUser = currentUser;
+      if (_this.currentUser.admin === 2) {
+        $location.url('/inventory');
+      }
+    });
+  };
+  getCurrentUser();
   companyFactory.index(function(companies){
-    $scope.companies = companies.data
+    $scope.companies = companies.data;
     console.log('returned from the factory with the companies',$scope.companies);
-  })
+  });
 
   // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
   $scope.show = function(company){
     $location.url('/companies/'+company._id);
-  }
+  };
 }]);
+
+
+app.filter('tel', function () {
+    return function (tel) {
+        if (!tel) { return ''; }
+
+        var value = tel.toString().trim().replace(/^\+/, '');
+
+        if (value.match(/[^0-9]/)) {
+            return tel;
+        }
+
+        var country, city, number;
+
+        switch (value.length) {
+            case 10: // +1PPP####### -> C (PPP) ###-####
+                country = 1;
+                city = value.slice(0, 3);
+                number = value.slice(3);
+                break;
+
+            case 11: // +CPPP####### -> CCC (PP) ###-####
+                country = value[0];
+                city = value.slice(1, 4);
+                number = value.slice(4);
+                break;
+
+            case 12: // +CCCPP####### -> CCC (PP) ###-####
+                country = value.slice(0, 3);
+                city = value.slice(3, 5);
+                number = value.slice(5);
+                break;
+
+            default:
+                return tel;
+        }
+
+        if (country == 1) {
+            country = "";
+        }
+
+        number = number.slice(0, 3) + '-' + number.slice(3);
+
+        return (country + " (" + city + ") " + number).trim();
+    };
+});

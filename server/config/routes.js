@@ -21,6 +21,7 @@ module.exports = function (app) {
   app.get('/users', userController.getAllUser);
   app.get('/user/getUser/:id', userController.getUser);
   app.get('/user/makeAdmin/:id', userController.makeAdmin);
+  app.get('/user/removeAdmin/:id', userController.removeAdmin);
   app.post('/user', userController.createUser);
   app.post('/user_login', userController.loginUser);
 
@@ -35,6 +36,7 @@ module.exports = function (app) {
   app.post('/products', products.create);
 
   app.get('/orders/notReceived', orders.indexNotReceived);
+  app.get('/orders/Received', orders.indexReceived);
   app.get('/orders/:id', orders.show);
   app.get('/orders', orders.index);
   app.post('/orders/receive/:id', orders.receive);

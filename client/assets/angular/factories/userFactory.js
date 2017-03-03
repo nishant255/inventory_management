@@ -18,8 +18,10 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
         console.log(dataFromServer);
         user = dataFromServer.data;
         console.log(user);
-        $cookieStore.put('logged-in', true);
-        $cookieStore.put('user_id', user._id);
+        if (user.success){
+          $cookieStore.put('logged-in', true);
+          $cookieStore.put('user_id', user.user._id);
+        }
         if (typeof(callback) == 'function') {
           callback(user);
         }
@@ -37,8 +39,8 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
         if (user.success) {
           $cookieStore.put('logged-in', true);
           $cookieStore.put('user_id', user.user._id);
+          console.log("Logged user in factory");
         }
-        console.log("Logged user in factory");
         if (typeof(callback) == 'function') {
           callback(user);
         }
@@ -89,6 +91,21 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
     _this.makeAdmin = function (userId, callback) {
       $http.get('/user/makeAdmin/'+userId).then( function (dataFromServer) {
         console.log(dataFromServer.data);
+        if (typeof(callback) === 'function') {
+          callback(dataFromServer.data);
+        }
+      });
+    };
+
+    // -------------------------------------------------------------------------
+    //                            Remove Admin
+    // -------------------------------------------------------------------------
+    _this.removeAdmin = function (userId, callback) {
+      $http.get('/user/removeAdmin/'+userId).then( function (dataFromServer) {
+        console.log(dataFromServer.data);
+        if (typeof(callback) === 'function') {
+          callback(dataFromServer.data);
+        }
       });
     };
 

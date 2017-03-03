@@ -10,15 +10,17 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
   // -------------------------------------------------------------------------
 
   var _this = this
+  $scope.errors = {}
 
+  // -------------------------------------------------------------------------
+  //                            Check Logged In User
+  // -------------------------------------------------------------------------
   var CheckingUser = function () {
     if (!$cookieStore.get('logged-in')) {
       console.log("Not Logged In");
       $location.url('/');
     } else {
       console.log("logged in");
-
-      console.log($cookieStore.get('user_id'));
     }
   };
   CheckingUser();
@@ -33,10 +35,24 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
   };
 
   // -------------------------------------------------------------------------
+  //                            Get CurrentUser
+  // -------------------------------------------------------------------------
+  var getCurrentUser = function () {
+    userFactory.getUser(function (currentUser) {
+      _this.currentUser = currentUser;
+      if (_this.currentUser.admin === 2) {
+        $location.url('/inventory');
+      }
+    });
+  };
+  getCurrentUser();
+
+  // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
   $scope.products = []
   $scope.order = {}
+  $scope.errors = []
 
   userFactory.findUser($cookieStore.get('user_id'),function(user){
     console.log('returned from user factory with found user',user);
@@ -53,8 +69,10 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
     // $scope.products.push($scope.order.product)
     if($scope._product == undefined){
       console.log('did not select a product');
+      $scope.errors = {message:'Please add a product'}
       return
     }
+    $scope.errors= {}
     var contains = false
     if($scope.products.length == 0){
       $scope.products.push($scope._product)
@@ -69,8 +87,9 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
     }
   }
   $scope.confirmOrder = function(){
-    if ($scope.order.buyPrice == undefined){
+    if ($scope.order.buyPrice == undefined || $scope.order.quantity == undefined){
       console.log('no products selected');
+      $scope.errors = [{message:"Must have a product with buy price and quantity before confirming"}]
       return
     }
     $scope.order.numProducts = 0
@@ -78,7 +97,6 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
       $scope.products[i].buyPrice = $scope.order.buyPrice[i]
       $scope.products[i].quantity = $scope.order.quantity[i]
       $scope.order.numProducts += $scope.order.quantity[i]
-      console.log('scope order numProducts',$scope.order.numProducts);
     }
     $scope.order.products = $scope.products
     $scope.order.recipient = $scope.user
@@ -93,9 +111,6 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
         console.log('there were errors creating order',order_data.data.errors);
         $scope.errors = order_data.data.errors
       }
-      productFactory.receiveOrder(order_data.data,function(returned_data){
-        console.log('returned from the product factory with returned_data',returned_data);
-      })
       $location.url('/userdashboard')
 
     })

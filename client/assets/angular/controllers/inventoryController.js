@@ -9,8 +9,7 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
   $scope.search = '';
   $scope.errors = []
   $scope.updatingObject = {}
-
-  var _this = this;
+  $scope.messages = {}
 
 
   // -------------------------------------------------------------------------
@@ -22,8 +21,10 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
       $location.url('/');
     } else {
       console.log("logged in");
-
-      console.log($cookieStore.get('user_id'));
+      userFactory.getUser(function (currentUser) {
+        _this.currentUser = currentUser;
+        console.log(_this.currentUser);
+      });
     }
   };
   CheckingUser();
@@ -47,7 +48,6 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
   $scope.findAllProductsWithSellPrice = function(){
     productFactory.findAllProductsWithSellPrice(function(products){
       console.log('back from the factory with all the products with sellprices',products.data);
-
       $scope.products = products.data
     })
   }
@@ -59,6 +59,7 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
       if(product_data.data.errors){
         $scope.errors = product_data.data.errors;
       }
+      $scope.messages = {message:'successfully updated price! '}
       $scope.products
       $scope.findAllProductsWithSellPrice();
     });
@@ -76,6 +77,7 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
       if(_this.currentUser.admin==2){
         console.log('normal user logged in');
         $scope.findAllProductsforSale();
+        $location.url('/inventory');
       } else {
         $scope.findAllProductsWithSellPrice();
       }

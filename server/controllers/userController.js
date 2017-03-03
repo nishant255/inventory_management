@@ -213,7 +213,45 @@ function UserController() {
   //                           Make Admin
   // -------------------------------------------------------------------------
   _this.makeAdmin = function (req, res) {
-
+    console.log(req.params.id);
+    User.findOne({_id:req.params.id}, function (err, user) {
+      if (err) {
+        console.log("Error While Find User for Admin");
+        console.log(err);
+      }
+      console.log(user);
+      user.admin = 1;
+      user.save(function (err, user) {
+        if (err) {
+          console.log("Error While Find User for Admin");
+          console.log(err);
+        }
+        console.log("successfully made Admin", user);
+        res.json(user);
+      });
+    });
+  };
+  // -------------------------------------------------------------------------
+  //                           Remove Admin
+  // -------------------------------------------------------------------------
+  _this.removeAdmin = function (req, res) {
+    console.log(req.params.id);
+    User.findOne({_id:req.params.id}, function (err, user) {
+      if (err) {
+        console.log("Error While Find User for Admin");
+        console.log(err);
+      }
+      console.log(user);
+      user.admin = 2;
+      user.save(function (err, user) {
+        if (err) {
+          console.log("Error While Find User for Admin");
+          console.log(err);
+        }
+        console.log("successfully made Admin", user);
+        res.json(user);
+      });
+    });
   };
 
   // -------------------------------------------------------------------------
@@ -255,10 +293,10 @@ function UserController() {
         res.json(err);
       } else {
         console.log('successfully found user',result);
-        res.json(result)
+        res.json(result);
       }
-    })
-  }
+    });
+  };
 
 
 

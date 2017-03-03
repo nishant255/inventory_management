@@ -1,11 +1,9 @@
 console.log("Loading Clientside productController.js");
 
-app.controller('productController', ['$scope', '$location', 'productFactory','$cookieStore','$routeParams', function ($scope, $location, productFactory, $cookieStore,$routeParams) {
+app.controller('productController', ['$scope', '$location', 'productFactory','$cookieStore','$routeParams', 'userFactory',function ($scope, $location, productFactory, $cookieStore,$routeParams, userFactory) {
 
   // Initialize Required Attributes
-  $scope.product;
   var _this = this;
-
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------
@@ -15,8 +13,6 @@ app.controller('productController', ['$scope', '$location', 'productFactory','$c
       $location.url('/');
     } else {
       console.log("logged in");
-
-      console.log($cookieStore.get('user_id'));
     }
   };
   CheckingUser();
@@ -29,6 +25,19 @@ app.controller('productController', ['$scope', '$location', 'productFactory','$c
       console.log(factoryResponse);
     });
   };
+
+  // -------------------------------------------------------------------------
+  //                            Get CurrentUser
+  // -------------------------------------------------------------------------
+  var getCurrentUser = function () {
+    userFactory.getUser(function (currentUser) {
+      _this.currentUser = currentUser;
+      if (_this.currentUser.admin === 2) {
+        $location.url('/inventory');
+      }
+    });
+  };
+  getCurrentUser();
 
   // -------------------------------------------------------------------------
   //                            Add Required Methods

@@ -4,7 +4,6 @@ app.controller('showUserController', ['$scope', '$location', 'productFactory', '
 
   // Initialize Required Attributes
   var _this = this;
-
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------
@@ -14,11 +13,19 @@ app.controller('showUserController', ['$scope', '$location', 'productFactory', '
       $location.url('/');
     } else {
       console.log("logged in");
-
-      console.log($cookieStore.get('user_id'));
     }
   };
   CheckingUser();
+
+  // -------------------------------------------------------------------------
+  //                            Log Out User
+  // -------------------------------------------------------------------------
+  _this.logout = function () {
+    userFactory.logout(function (factoryResponse) {
+      console.log(factoryResponse);
+    });
+  };
+
   // -------------------------------------------------------------------------
   //                            Get CurrentUser
   // -------------------------------------------------------------------------
@@ -26,7 +33,7 @@ app.controller('showUserController', ['$scope', '$location', 'productFactory', '
     userFactory.getUser(function (currentUser) {
       _this.currentUser = currentUser;
       if (_this.currentUser.admin === 2) {
-        $location.url('/userDashboard');
+        $location.url('/inventory');
       }
     });
   };
@@ -48,6 +55,18 @@ app.controller('showUserController', ['$scope', '$location', 'productFactory', '
     console.log(userId);
     userFactory.makeAdmin(userId, function (factoryResponse) {
       console.log(factoryResponse);
+      getAllUser();
+    });
+  };
+
+  // -------------------------------------------------------------------------
+  //                            Remove Admin
+  // -------------------------------------------------------------------------
+  _this.removeAdmin = function (userId) {
+    console.log(userId);
+    userFactory.removeAdmin(userId, function (factoryResponse) {
+      console.log(factoryResponse);
+      getAllUser();
     });
   };
 
@@ -71,6 +90,10 @@ app.filter('titleCase', function() {
     return input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   };
 });
+
+// -------------------------------------------------------------------------
+//                            Filter for Phone Number
+// -------------------------------------------------------------------------
 
 app.filter('tel', function () {
     return function (tel) {

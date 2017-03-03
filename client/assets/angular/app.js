@@ -84,12 +84,12 @@ app.config( function ($routeProvider) {
       controllerAs: 'SOC'
     })
 
-
-    .when('/companies/:id', {
-      templateUrl: 'partials/company.html',
-      controller: 'companyController',
-      controllerAs: 'CC'
-    })
+    // TBD
+    // .when('/companies/:id', {
+    //   templateUrl: 'partials/company.html',
+    //   controller: 'companyController',
+    //   controllerAs: 'CC'
+    // })
 
     .otherwise({
       redirectTo: '/'

@@ -8,6 +8,7 @@ app.factory('orderFactory', ['$http', function ($http) {
 
     var _this = this;
     var order = {}
+    var message = {}
 
     // -------------------------------------------------------------------------
     //                            Add Required Methods
@@ -20,9 +21,22 @@ app.factory('orderFactory', ['$http', function ($http) {
         callback(returned_data);
       })
     }
+    this.getMessage = function(callback){
+      if (message != {}){
+        callback(message)
+        message = {}
+      }
+    }
     this.indexNotReceived = function(callback){
       console.log('got to the order factory, about to go to the server');
       $http.get('/orders/notReceived').then(function(returned_data){
+        console.log('returned from the server with all orders: ',returned_data.data);
+        callback(returned_data);
+      })
+    }
+    this.indexReceived = function(callback){
+      console.log('got to the order factory, about to go to the server');
+      $http.get('/orders/Received').then(function(returned_data){
         console.log('returned from the server with all orders: ',returned_data.data);
         callback(returned_data);
       })
@@ -36,7 +50,9 @@ app.factory('orderFactory', ['$http', function ($http) {
     }
     this.create = function(order,callback){
       $http.post('/orders/',order).then(function(returned_data){
+        message = {}
         console.log('returned form the server with the created company',returned_data.data);
+        message = {message:'Successfully created order!'}
         callback(returned_data);
       })
     }

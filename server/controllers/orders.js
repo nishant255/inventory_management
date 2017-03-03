@@ -34,6 +34,18 @@ function OrdersController() {
       }
     })
   }
+  _this.indexReceived = function(req, res){
+    console.log('got to the server controller and about to search for orders in DB');
+    Order.find({received:true},function(err,result){
+      if(err){
+        console.log('there was an error finding orders',err);
+        res.json(err);
+      } else {
+        console.log('successfully found orders', result);
+        res.json(result)
+      }
+    })
+  }
   _this.create = function (req, res) {
     console.log('got to the server controller with order data ',req.body);
     Order.create(req.body,function(err,result){

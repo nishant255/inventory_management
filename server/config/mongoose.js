@@ -3,7 +3,7 @@ console.log("Loading mongoose.js");
 var mongoose    = require('mongoose'),
     fs          = require ('fs'),
     path        = require('path'),
-    db_name     = "inventory_db", // <<<<<<<<<<<< CHANGE DB NAME >>>>>>>>>>>>
+    db_name     = "inventory_db_2", // <<<<<<<<<<<< CHANGE DB NAME >>>>>>>>>>>>
     reg         = new RegExp( ".js$", "i" ),
     dbURI       = 'mongodb://localhost/' + db_name;
     models_path = path.join( __dirname, "../models"),

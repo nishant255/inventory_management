@@ -1,6 +1,6 @@
 console.log("Loading Clientside companyController.js");
 
-app.controller('companyController', ['$scope', '$location', 'companyfactory','$cookieStore', function ($scope, $location, companyfactory, $cookieStore) {
+app.controller('companyController', ['$scope', '$location', 'companyfactory','$cookieStore', 'userFactory',function ($scope, $location, companyfactory, $cookieStore, userFactory) {
 
   // Initialize Required Attributes
   var _this = this;
@@ -14,8 +14,6 @@ app.controller('companyController', ['$scope', '$location', 'companyfactory','$c
       $location.url('/');
     } else {
       console.log("logged in");
-
-      console.log($cookieStore.get('user_id'));
     }
   };
   CheckingUser();
@@ -30,10 +28,23 @@ app.controller('companyController', ['$scope', '$location', 'companyfactory','$c
   };
 
   // -------------------------------------------------------------------------
+  //                            Get CurrentUser
+  // -------------------------------------------------------------------------
+  var getCurrentUser = function () {
+    userFactory.getUser(function (currentUser) {
+      _this.currentUser = currentUser;
+      if (_this.currentUser.admin === 2) {
+        $location.url('/inventory');
+      }
+    });
+  };
+  getCurrentUser();
+
+  // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
   companyfactory.findCompany(id, function(returned_data){
     $scope.company = returned_data;
-  })
+  });
 
 }]);
