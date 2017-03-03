@@ -22,6 +22,18 @@ function OrdersController() {
       }
     })
   }
+  _this.indexNotReceived = function(req, res){
+    console.log('got to the server controller and about to search for orders in DB');
+    Order.find({received:false},function(err,result){
+      if(err){
+        console.log('there was an error finding orders',err);
+        res.json(err);
+      } else {
+        console.log('successfully found orders', result);
+        res.json(result)
+      }
+    })
+  }
   _this.create = function (req, res) {
     console.log('got to the server controller with order data ',req.body);
     Order.create(req.body,function(err,result){
@@ -35,8 +47,8 @@ function OrdersController() {
     })
   }
   _this.show = function(req,res){
-    console.log('got to server controller with order data');
-    Order.findOne({_id: req.body}, function(err, result){
+    console.log('got to server controller with order data',req.params);
+    Order.findById(req.params.id, function(err, result){
       if (err){
         console.log('error showing order ', err);
         res.json(err);
@@ -45,6 +57,19 @@ function OrdersController() {
         res.json(result);
       }
     })
+  }
+  _this.receive = function(req,res){
+    console.log('got to the server controller with the order id and recipient',req.params.id,req.body);
+    Order.findByIdAndUpdate(req.params.id,{$set: {recipient:req.body, received:true}}, function(err,result){
+      if(err){
+        console.log('there was an error updating order',err);
+        res.json(err)
+      } else {
+        console.log('successfully updated order',result);
+        res.json(result)
+      }
+    })
+
   }
 }
 

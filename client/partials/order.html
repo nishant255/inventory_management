@@ -1,14 +1,15 @@
 <nav>
-  <a href="#!/dashboard">Dashboard</a> - <a href="#!/inventory">Inventory</a> - <a href="#!/orders">Orders</a> - <a href="#!/companies">Companies</a> - <a href='#!/logout'>Logout</a>
+  <a href="#!/userdashboard">Dashboard</a> - <a href="#!/inventory">Inventory</a> - <a href="#!/orders">Orders</a> - <a href="#!/companies">Companies</a> - <a href='#!/logout'>Logout</a>
   <!-- Add your Navigation Here -->
 </nav>
-
-<span class="bold">Order #: {{order._id}}</span>
+<span class="bold">Order #: {{order._id}}</span><br>
+<span>Company: {{order.sender.name}}</span><br>
 
 <div ng-repeat="product in order.products">
-  <span class="bold">Product #: {{product._id}}</span> - <span class="bold">Name {{product.name}}</span>
-  <span>Company: {{product.company.name}}</span>
-  <span>Quantity in stock: {{product.quantity}}</span>
+  <span class="bold">Product #: {{product._id}}</span><br>
+  <span class="bold">Name:  {{product.name}}</span><br>
+  <span>Quantity bought: {{product.quantity}}</span><br>
   <span>Buy Price: {{product.buyPrice}}</span>
-  <span>Sell Price: {{product.sellPrice}}</span>
-</div>
+</div><br>
+
+<a class="waves-effect waves-light btn" ng-click='receiveOrder()'>Recieved Order</a>

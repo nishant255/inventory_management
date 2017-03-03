@@ -1,11 +1,13 @@
 <h2>Choose Company to buy Products from</h2>
 <!-- {{companies}} -->
 <form ng-submit='start()'>
+  <a href='/#!/add_company'class="waves-effect waves-light btn">Add New Company</a><br><br>
+  OR<br>
   Select Company
   <select class='browser-default' ng-options='company as company.name for company in companies' ng-model='order.company'></select><br>
 
-  or <a href='/#!/add_company'class="waves-effect waves-light btn">Add New Company</a><br><br>
   <button class="btn waves-effect waves-light" type="submit" name="action">Continue to Add Products</button>
   <br>
 </form>
-<a href='/#!/'><button>Cancel</button></a>
+<br>
+<a href='/#!/adminDashboard'class='waves-effect waves-light btn'>Cancel</a>

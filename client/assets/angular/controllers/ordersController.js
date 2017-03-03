@@ -1,8 +1,11 @@
 console.log("Loading Clientside ordersController.js");
 
-app.controller('ordersController', ['$scope', '$location', '$cookieStore', 'userFactory',function ($scope, $location, $cookieStore, userFactory) {
+
+app.controller('ordersController', ['$scope', '$location', '$cookieStore', 'userFactory','orderFactory',function ($scope, $location, $cookieStore, userFactory,orderFactory) {
+
 
   // Initialize Required Attributes
+  var _this = this
   $scope.orders = [
     {
       _id: 1,
@@ -74,4 +77,11 @@ app.controller('ordersController', ['$scope', '$location', '$cookieStore', 'user
   $scope.show = function(order){
     $location.url('/orders/'+order._id);
   }
+  orderFactory.indexNotReceived(function(orders_data){
+    console.log('returned to the controller with the orders',orders_data.data);
+    if(orders_data.data.errors){
+      $scope.errors = orders_data.data.errors
+    }
+    $scope.orders = orders_data.data
+  })
 }]);
