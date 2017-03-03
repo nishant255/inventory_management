@@ -5,6 +5,8 @@ app.controller('orderController', ['$scope', '$location', 'orderFactory', '$cook
   // Initialize Required Attributes
   var _this = this
   $scope.order;
+  var _this = this;
+
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User
@@ -38,7 +40,7 @@ app.controller('orderController', ['$scope', '$location', 'orderFactory', '$cook
         productFactory.receiveOrder(order_data.data,function(result_data){
           console.log('returned from the factory with the result data');
         })
-        // $location.url('/orders')
+        $location.url('/inventory')
       }
     })
 

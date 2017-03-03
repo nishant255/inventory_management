@@ -4,6 +4,8 @@ app.controller('addCompanyController', ['$scope', '$location', 'productFactory',
 
 
   var self = this;
+  var _this = this;
+
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User

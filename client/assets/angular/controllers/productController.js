@@ -1,9 +1,11 @@
 console.log("Loading Clientside productController.js");
 
-app.controller('productController', ['$scope', '$location', 'productFactory','$cookieStore', function ($scope, $location, productFactory, $cookieStore) {
+app.controller('productController', ['$scope', '$location', 'productFactory','$cookieStore','$routeParams', function ($scope, $location, productFactory, $cookieStore,$routeParams) {
 
   // Initialize Required Attributes
   $scope.product;
+  var _this = this;
+
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------
@@ -31,7 +33,7 @@ app.controller('productController', ['$scope', '$location', 'productFactory','$c
   // -------------------------------------------------------------------------
   //                            Add Required Methods
   // -------------------------------------------------------------------------
-  productFactory.findProduct(id, function(returned_data){
+  productFactory.findProduct($routeParams.id, function(returned_data){
     $scope.product = returned_data;
   });
 }]);

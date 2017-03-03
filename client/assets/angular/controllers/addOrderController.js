@@ -4,6 +4,8 @@ app.controller('addOrderController', ['$scope', '$location', 'productFactory','c
 
   var _this = this
   // Initialize Required Attributes
+  var _this = this;
+
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------

@@ -10,11 +10,12 @@ app.config( function ($routeProvider) {
       controller: 'loginController',
       controllerAs: 'LC'
     })
-
-    .when('/admindashboard', {
-      templateUrl: 'partials/adminDashboard.html',
-      controller: 'adminDashboardController'
-    })
+    //
+    // .when('/admindashboard', {
+    //   templateUrl: 'partials/adminDashboard.html',
+    //   controller: 'adminDashboardController'
+    //
+    // })
 
     .when('/userdashboard', {
       templateUrl: 'partials/userDashboard.html',
@@ -35,12 +36,14 @@ app.config( function ($routeProvider) {
 
     .when('/orders/', {
       templateUrl: 'partials/orders.html',
-      controller: 'ordersController'
+      controller: 'ordersController',
+      controllerAs: 'OC'
     })
 
     .when('/companies', {
       templateUrl: 'partials/companies.html',
-      controller: 'companiesController'
+      controller: 'companiesController',
+      controllerAs: 'CSC'
     })
     .when('/add_order', {
       templateUrl: 'partials/add_order.html',
@@ -50,30 +53,36 @@ app.config( function ($routeProvider) {
     .when('/add_company', {
       templateUrl: 'partials/add_company.html',
       controller: 'addCompanyController',
+      controllerAs: 'ACC'
     })
     .when('/add_order/:company_id', {
       templateUrl: 'partials/add_products.html',
       controller: 'addProductsController',
+      controllerAs: 'APSC'
     })
     .when('/add_product/:company_id', {
       templateUrl: 'partials/add_product.html',
       controller: 'addProductController',
+      controllerAs: 'APC'
     })
 
     .when('/products/:id', {
       templateUrl: 'partials/product.html',
-      controller: 'productController'
+      controller: 'productController',
+      controllerAs: 'PC'
     })
 
     .when('/orders/:id', {
       templateUrl: 'partials/order.html',
-      controller: 'orderController'
+      controller: 'orderController',
+      controllerAs: 'SOC'
     })
 
 
     .when('/companies/:id', {
       templateUrl: 'partials/company.html',
-      controller: 'companyController'
+      controller: 'companyController',
+      controllerAs: 'CC'
     })
 
     .otherwise({

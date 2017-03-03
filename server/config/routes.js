@@ -21,6 +21,11 @@ module.exports = function (app) {
   app.post('/user/', userController.createUser);
   app.post('/user_login', userController.loginUser);
 
+  app.get('/products/name/:name', products.findByName);
+  app.post('/products/receiveOrder', products.receiveOrder);
+  app.post('/products/update', products.update);
+  app.post('/products/name/:name', products.setSellPriceToZero);
+  app.get('/products/withSellPrice', products.indexWithSellPrice);
   app.get('/products/:id', products.show);
   app.get('/products', products.index);
   app.post('/products', products.create);

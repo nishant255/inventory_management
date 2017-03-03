@@ -2,6 +2,8 @@ console.log("Loading Clientside addProductsController.js");
 
 app.controller('addProductsController', ['$scope', '$location', 'productFactory','companyFactory','orderFactory','userFactory','$routeParams', '$cookieStore', function ($scope, $location, productFactory, companyFactory, orderFactory, userFactory ,$routeParams, $cookieStore) {
   // Initialize Required Attributes
+  var _this = this;
+
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------
@@ -87,6 +89,9 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
         console.log('there were errors creating order',order_data.data.errors);
         $scope.errors = order_data.data.errors
       }
+      productFactory.receiveOrder(order_data.data,function(returned_data){
+        console.log('returned from the product factory with returned_data',returned_data);
+      })
       $location.url('/userdashboard')
 
     })

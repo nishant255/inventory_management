@@ -3,6 +3,8 @@ console.log("Loading Clientside companyController.js");
 app.controller('companyController', ['$scope', '$location', 'companyfactory','$cookieStore', function ($scope, $location, companyfactory, $cookieStore) {
 
   // Initialize Required Attributes
+  var _this = this;
+
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------

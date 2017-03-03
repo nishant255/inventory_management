@@ -48,12 +48,101 @@ function ProductsController() {
     })
   }
   _this.show = function(req,res){
-    console.log('got to the server with product id ', req.body);
-    Product.findOne({_id: req.body}, function(err,result){
+    console.log('got to the server with product id ', req.params.id);
+    Product.findOne({_id: req.params.id}, function(err,result){
       if (err){
         console.log('error showing product');
       } else {
         console.log('successfully got product ', result);
+        res.json(result)
+      }
+    })
+  }
+  _this.findByName = function(req,res){
+    console.log('got to the server with the product name',req.params.name);
+    Product.find({name:req.params.name},function(err,result){
+      if(err){
+        console.log('there was an error finding product',err);
+        res.json(err)
+      } else {
+        console.log('found product',result);
+        res.json(result)
+      }
+    })
+  }
+  _this.setSellPriceToZero = function(req,res){
+    console.log('got ot the server function setSellPriceToZero with the product name',req.params.name);
+    Product.update({name:req.params.name},{$set: {sellPrice:0}},function(err,result){
+      if(err){
+        console.log('there was an error updating product sellprice to zero',err);
+        res.json(err)
+      } else {
+        console.log(`updated product ${req.params.name} sellprice to zero`,result);
+        res.json(result)
+      }
+    })
+  }
+  _this.indexWithSellPrice = function(req, res){
+    console.log('got to the server function indexWithSellPrice');
+    Product.find({sellPrice:{$gt:-1}},function(err,result){
+      if(err){
+        console.log('there was an error finding items with sellprice',err);
+        res.json(err)
+      } else {
+        console.log('found all items with sellprice',result);
+        res.json(result)
+      }
+    })
+  }
+
+  _this.updateQuantity = function(product,callback){
+    callback()
+  }
+  _this.updateloop = function(products,product_num){
+    _this.updateQuantity(products[product_num],function(){
+      var currentProduct = products[product_num]
+      Product.findById(products[product_num]._id,function(err,result){
+        if(err){
+          console.log('err finding product');
+        } else {
+          console.log('got product',result);
+          console.log('order quantity',currentProduct.quantity);
+          if(!result.sellPrice){
+            result.sellPrice = 0
+          }
+          if(!result.quantity){
+            result.quantity = 0
+          }
+          result.quantity+= currentProduct.quantity
+          result.save(function(err,result){
+            if(err){
+              console.log('there was error saving',err);
+            } else {
+              console.log('we did it! TEH!',result);
+            }
+          })
+        }
+      })
+      product_num ++
+      if(product_num<products.length){
+        _this.updateloop(products,product_num)
+      }
+    })
+  }
+  _this.receiveOrder = function(req,res){
+    var product_num = 0
+    var order = req.body
+    console.log('got to the server with the order!',order);
+    _this.updateloop(order.products,product_num)
+  }
+  _this.update = function(req,res){
+    console.log('got to the server with the product',req.body);
+    Product.update({_id:req.body._id},req.body,function(err,result){
+      if(err){
+        console.log('there was an error updating',err);
+        res.json(err)
+      } else {
+        console.log('succusssssssssssss',result);
         res.json(result)
       }
     })

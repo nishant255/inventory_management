@@ -3,7 +3,8 @@ a {
 }
 
 ::-webkit-input-placeholder {
-  color:red
+  color:red;
+  text-align: center;
 }
 
 .scroll{
@@ -18,4 +19,8 @@ a {
 
 .error_messages {
   color: red;
+}
+
+.center-title {
+  text-align: center;
 }

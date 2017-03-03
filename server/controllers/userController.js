@@ -77,8 +77,8 @@ function UserController() {
     }
     var newCreatedUser = new User({
       first_name: req.body.first_name.toLowerCase(),
-      last_name: req.body.last_name,
-      email: req.body.email,
+      last_name: req.body.last_name.toLowerCase(),
+      email: req.body.email.toLowerCase(),
       phone_number: req.body.phone_number,
       password: req.body.password,
       admin: 2
@@ -149,6 +149,37 @@ function UserController() {
       }
     });
   };
+
+  var createAdminUser = function () {
+    User.findOne({email:"a@admin.com"}, function (err, user) {
+      if (err) {
+        console.log(err);
+      }
+      if (!user) {
+        console.log("Super Admin Not Found! Creating one at email: a@admin.com pass: asdf");
+        var newAdmin = new User({
+          first_name: 'admin',
+          last_name: 'admin',
+          email: 'a@admin.com',
+          phone_number: '5106009412',
+          password: 'asdf',
+          admin: 0
+        });
+        newAdmin.save(function (err, user) {
+          if (err) {
+            console.log("Email already Registered");
+            error_messages.push("Email Already Registered! Please Login.");
+            res.json({success: false, error_messages: error_messages});
+            console.log(err);
+            throw err;
+          }
+        });
+      } else {
+        console.log("Super Admin Available @ email: a@admin.com pass: asdf");
+      }
+    });
+  };
+  createAdminUser();
 
   // -------------------------------------------------------------------------
   //                           Get all the users
