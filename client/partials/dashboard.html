@@ -6,6 +6,7 @@
       <li class="active"><a href="#!/userdashboard">Dashboard</a></li>
       <li><a href="#!/inventory">Inventory</a></li>
       <li><a href="#!/orders">Orders</a></li>
+      <li><a ng-if="DC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
       <li><a href="#!/companies">Companies</a></li>
       <li><a href="#!/" ng-click="DC.logout()">Logout</a></li>
     </ul>
@@ -13,11 +14,9 @@
 </nav>
 <div class='lighten-2'>
   <h1 class="center_title">Dashboard</h1>
+  <h2>Total Inventory Value: ${{totalvalue}}</h2>
   <div class="container">
-
-    <p><a class="waves-effect blue btn" href='#!/add_order'>Add Order</a>
-      <a class="waves-effect orange btn" ng-if="DC.currentUser.admin !== 2" href='#!/show_users'>Show All Users</a>
-    </p>
+    <p><a class="waves-effect blue btn" href='#!/add_order'>Add Order</a></p>
     <div><h5>Incoming Shipments</h5>
       <a href='/#!/orders/{{order._id}}' ng-repeat="order in orders">{{order.numProducts}} product(s) for {{order.recipient.data.email}} on {{order.createdAt | date:'medium'}}<br></a>
     </div>

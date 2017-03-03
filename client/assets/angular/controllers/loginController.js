@@ -18,8 +18,14 @@ app.controller('loginController', ['$scope', '$location', 'userFactory', '$cooki
         _this.success = false;
         _this.error_messages = dataFromServer.error_messages;
       } else {
-        _this.existingUser = {};
-        $location.url('/userdashboard');
+        if (dataFromServer.user.admin === 2) {
+          console.log("Sending User to inventory");
+          _this.existingUser = {};
+          $location.url('/inventory');
+        } else {
+          _this.existingUser = {};
+          $location.url('/userdashboard');
+        }
       }
     });
   };

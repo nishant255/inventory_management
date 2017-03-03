@@ -12,16 +12,14 @@
 </nav>
 <div class='lighten-2'>
   <h1 class="center_title">All Registered Users</h1>
+
   <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="text" ng-model="filter_users">
-          <label for="email" data-error="wrong" data-success="right">Filter Users</label>
-        </div>
-      </div>
-    </form>
+    <div class="input-field col s12">
+      <input id="email" type="text" ng-model="filter_users">
+      <label for="email" data-error="wrong" data-success="right">Filter Users</label>
+    </div>
   </div>
+
   <table class="highlight table_margin">
         <thead>
           <tr>
@@ -30,11 +28,11 @@
               <th data-field="email">Email</th>
               <th data-field="phone_number">Phone Number</th>
               <th data-field="admin" ng-if="SUC.currentUser.admin === 0">Admin Status</th>
-              <th data-field="admin" ng-if="SUC.currentUser.admin === 0">Admin Actions</th>
+              <th data-field="adminAction" ng-if="SUC.currentUser.admin === 0">Admin Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="user in SUC.users | filter: filter_users">
+          <tr ng-repeat="user in SUC.users | filter: filter_users | orderBy: admin">
             <td>{{user.first_name | titleCase}}</td>
             <td>{{user.last_name | titleCase}}</td>
             <td>{{user.email}}</td>
