@@ -1,4 +1,5 @@
 <nav>
+
   <div class="orange nav-wrapper">
     <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="DC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="DC.currentUser.admin === 1"><i>Admin</i></span></a>
     <ul>
@@ -13,6 +14,7 @@
 <div class='lighten-2'>
   <h1 class="center_title">Dashboard</h1>
   <div class="container">
+
     <p><a class="waves-effect orange btn" href='#!/add_order'>Add Order</a>
       <a class="waves-effect orange btn" ng-if="DC.currentUser.admin !== 2" href='#!/show_users'>Show All Users</a>
     </p>

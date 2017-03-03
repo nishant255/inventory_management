@@ -25,8 +25,10 @@ app.factory('productFactory', ['$http', function ($http) {
         callback(returned_data)
       })
     }
-    this.create = function(product,callback){
-      $http.post('/products/',product).then(function(returned_data){
+    this.create = function(product,company,callback){
+      product._company = company
+      product.received = false;
+      $http.post('/products/',product,company).then(function(returned_data){
         console.log('returned form the server with the created company',returned_data.data);
         callback(returned_data);
         if (returned_data.data.errors) {
@@ -34,6 +36,40 @@ app.factory('productFactory', ['$http', function ($http) {
         }
       })
     }
+    this.receiveOrder = function(order,callback){
+      console.log('got to product factory method receiveOrder with order',order);
+      $http.post('/products/receiveOrder',order).then(function(returned_data){
+        console.log('got back from the server with the returned data',returned_data.data);
+      })
+    }
+    this.findAllProductsWithSellPrice = function(callback){
+      console.log('got to the product Factory and about to get all products with sellprices');
+      $http.get('/products/withSellPrice').then(function(returned_data){
+        console.log('back from the server with products with sellprices',returned_data.data);
+        if(returned_data.data.errors){
+          console.log('there were errors',returned_data.data.errors);
+        }
+        callback(returned_data)
+      })
+    }
+    this.update = function(product,callback){
+      console.log('got to the factory with the product',product);
+      $http.post('/products/update',product).then(function(returned_data){
+        console.log('got back from the server with returned_data',returned_data.data);
+        callback(returned_data)
+      })
+    }
+    this.findAllProductsforSale = function(callback){
+      console.log('got to the product Factory and about to get all products  for sale');
+      $http.get('/products/forSale').then(function(returned_data){
+        console.log('back from the server with products with sellprices',returned_data.data);
+        if(returned_data.data.errors){
+          console.log('there were errors',returned_data.data.errors);
+        }
+        callback(returned_data)
+      })
+    }
+
   }
   return new ProductFactory();
 }]);

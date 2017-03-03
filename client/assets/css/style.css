@@ -2,8 +2,9 @@ a {
   color: black
 }
 
-::placeholder {
-  color:black
+::-webkit-input-placeholder {
+  color:red;
+  text-align: center;
 }
 
 .scroll{
@@ -20,6 +21,8 @@ a {
   color: red;
 }
 
+
 .center_title {
+
   text-align: center;
 }
