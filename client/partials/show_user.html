@@ -30,11 +30,11 @@
               <th data-field="email">Email</th>
               <th data-field="phone_number">Phone Number</th>
               <th data-field="admin" ng-if="SUC.currentUser.admin === 0">Admin Status</th>
-              <th data-field="admin" ng-if="SUC.currentUser.admin === 0">Admin Actions</th>
+              <th data-field="adminAction" ng-if="SUC.currentUser.admin === 0">Admin Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="user in SUC.users | filter: filter_users">
+          <tr ng-repeat="user in SUC.users | filter: filter_users | orderBy: admin">
             <td>{{user.first_name | titleCase}}</td>
             <td>{{user.last_name | titleCase}}</td>
             <td>{{user.email}}</td>
