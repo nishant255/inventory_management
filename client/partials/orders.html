@@ -10,14 +10,14 @@
       </ul>
     </div>
   </nav>
-
-<h1 class="center-title">Orders</h1>
+<h1>Orders</h1>
 <div ng-repeat='error in errors'>
   <p>{{error.message}}</p>
 </div>
-<input ng-model="search" placeholder="search products...">
+<input ng-model="search" placeholder="search pending orders...">
 
 <div class="scroll">
+  <h4 class="center-title">Pending Orders</h4>
   <div ng-repeat="order in orders">
     <hr>
     <span class="bold">Order ID: {{order._id}}</span> - <span class="bold">{{order.products.length}} Product(s)</span>
@@ -49,3 +49,36 @@
   </div>
 
 </div>
+<!-- <div class="scroll">
+  <h1 class="center-title">Received Orders</h1>
+  <div ng-repeat="order in receivedorders">
+    <hr>
+    <span class="bold">Order ID: {{order._id}}</span> - <span class="bold">{{order.products.length}} Product(s)</span>
+    <br>
+    <a href="#!/orders/{{order._id}}"><button>View Order</button></a>
+    <br>
+    <span>Placed By: {{order.recipient.data.first_name}}</span>
+    <br>
+    <span>Placed On: {{order.createdAt}}</span>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in order.products | filter: {name:search}">
+          <td ng-bind="product._id"></td>
+          <td ng-bind="product.name"></td>
+          <td ng-bind="product.quantity"></td>
+          <td ng-bind="product.sellPrice"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div> -->

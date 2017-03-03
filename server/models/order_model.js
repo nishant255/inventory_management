@@ -12,6 +12,7 @@ var order = new mongoose.Schema({
     buyPrice: { type:Number, required: true},
     _company: { type: Schema.Types.ObjectId, ref: 'Company', required:true}
   }],
+  numProducts: {type:Number,required:true},
   address: {
     name: { type:String, required:true, minlength:2 },
     street: { type:String, required:true, minlength:2 },

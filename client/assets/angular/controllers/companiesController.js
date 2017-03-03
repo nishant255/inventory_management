@@ -1,6 +1,6 @@
 console.log("Loading Clientside companiesController.js");
 
-app.controller('companiesController', ['$scope', '$location', '$cookieStore', 'userFactory',function ($scope, $location, $cookieStore, userFactory) {
+app.controller('companiesController', ['$scope', '$location', '$cookieStore', 'userFactory','companyFactory',function ($scope, $location, $cookieStore, userFactory,companyFactory) {
 
   // Initialize Required Attributes
   $scope.companies = [
@@ -86,6 +86,10 @@ app.controller('companiesController', ['$scope', '$location', '$cookieStore', 'u
       console.log(factoryResponse);
     });
   };
+  companyFactory.index(function(companies){
+    $scope.companies = companies.data
+    console.log('returned from the factory with the companies',$scope.companies);
+  })
 
   // -------------------------------------------------------------------------
   //                            Add Required Methods

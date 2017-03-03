@@ -4,6 +4,7 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
   // Initialize Required Attributes
   var _this = this;
 
+
   // -------------------------------------------------------------------------
   //                            Check Logged In User
   // -------------------------------------------------------------------------
@@ -72,9 +73,12 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
       console.log('no products selected');
       return
     }
+    $scope.order.numProducts = 0
     for (var i = 0; i < $scope.products.length; i++) {
       $scope.products[i].buyPrice = $scope.order.buyPrice[i]
       $scope.products[i].quantity = $scope.order.quantity[i]
+      $scope.order.numProducts += $scope.order.quantity[i]
+      console.log('scope order numProducts',$scope.order.numProducts);
     }
     $scope.order.products = $scope.products
     $scope.order.recipient = $scope.user

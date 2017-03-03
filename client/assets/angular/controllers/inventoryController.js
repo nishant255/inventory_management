@@ -7,7 +7,11 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
   $scope.sortType = 'name';
   $scope.sortReverse = true;
   $scope.search = '';
-  $scope.errors = [];
+  $scope.errors = []
+  $scope.updatingObject = {}
+
+  var _this = this;
+
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User
@@ -43,16 +47,19 @@ app.controller('inventoryController', ['$scope', '$location', '$cookieStore', 'u
   $scope.findAllProductsWithSellPrice = function(){
     productFactory.findAllProductsWithSellPrice(function(products){
       console.log('back from the factory with all the products with sellprices',products.data);
-      $scope.products = products.data;
-    });
-  };
-  $scope.updatePrice = function(index){
-    console.log('clicked updatePrice',$scope.products[index]);
-    productFactory.update($scope.products[index],function(product_data){
+
+      $scope.products = products.data
+    })
+  }
+  $scope.updatePrice = function(product){
+    console.log('clicked updatePrice',product);
+    productFactory.update(product,function(product_data){
+
       console.log('got back to the inventory controller with TEH product data',product_data);
       if(product_data.data.errors){
         $scope.errors = product_data.data.errors;
       }
+      $scope.products
       $scope.findAllProductsWithSellPrice();
     });
   };
