@@ -10,12 +10,13 @@ app.config( function ($routeProvider) {
       controller: 'loginController',
       controllerAs: 'LC'
     })
-    //
-    // .when('/admindashboard', {
-    //   templateUrl: 'partials/adminDashboard.html',
-    //   controller: 'adminDashboardController'
-    //
-    // })
+
+    .when('/show_users', {
+      templateUrl: 'partials/show_user.html',
+      controller: 'showUserController',
+      controllerAs: 'SUC'
+
+    })
 
     .when('/userdashboard', {
       templateUrl: 'partials/userDashboard.html',

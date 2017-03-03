@@ -178,14 +178,63 @@ function UserController() {
         console.log("Super Admin Available @ email: a@admin.com pass: asdf");
       }
     });
+
+    User.findOne({email:"aa@admin.com"}, function (err, user) {
+      if (err) {
+        console.log(err);
+      }
+      if (!user) {
+        console.log("Admin Not Found! Creating one at email: aa@admin.com pass: asdf");
+        var newAdmin = new User({
+          first_name: 'admin',
+          last_name: 'admin',
+          email: 'aa@admin.com',
+          phone_number: '5106009412',
+          password: 'asdf',
+          admin: 1
+        });
+        newAdmin.save(function (err, user) {
+          if (err) {
+            console.log("Email already Registered");
+            error_messages.push("Email Already Registered! Please Login.");
+            res.json({success: false, error_messages: error_messages});
+            console.log(err);
+            throw err;
+          }
+        });
+      } else {
+        console.log("Admin Available @ email: aa@admin.com pass: asdf");
+      }
+    });
   };
   createAdminUser();
 
   // -------------------------------------------------------------------------
+  //                           Make Admin
+  // -------------------------------------------------------------------------
+  _this.makeAdmin = function (req, res) {
+
+  }
+
+  // -------------------------------------------------------------------------
+  //                           Give One User
+  // -------------------------------------------------------------------------
+  _this.getUser = function (req, res) {
+    User.findOne({_id: req.params.id}, function (err, user) {
+      if (err) {
+        console.log("Error While Find Single User");
+        console.log(err);
+      } else {
+        res.json(user);
+      }
+    });
+  };
+
+  // -------------------------------------------------------------------------
   //                           Get all the users
   // -------------------------------------------------------------------------
-  _this.all_users = function (req, res) {
-    User.find({}).populate('_appointment').exec(function (err, users) {
+  _this.getAllUser = function (req, res) {
+    User.find({}, function (err, users) {
       if (err) {
         console.log("Error While finding all the users");
         console.log(err);

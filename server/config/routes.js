@@ -18,7 +18,10 @@ module.exports = function (app) {
   app.post('/companies', companies.create);
 
   app.get('/user/:id', userController.getUser);
-  app.post('/user/', userController.createUser);
+  app.get('/users', userController.getAllUser);
+  app.get('/user/getUser/:id', userController.getUser);
+  app.get('/user/makeAdmin/:id', userController.makeAdmin);
+  app.post('/user', userController.createUser);
   app.post('/user_login', userController.loginUser);
 
   app.get('/products/name/:name', products.findByName);
