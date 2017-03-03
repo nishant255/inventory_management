@@ -1,5 +1,4 @@
-<nav>
-
+<nav ng-if="IC.currentUser.admin !== 2">
     <div class="orange nav-wrapper">
       <a href="#!/userdashboard" class="brand-logo right">BMN Inventory</a>
       <ul>
@@ -12,35 +11,62 @@
     </div>
   </nav>
 
+<nav ng-if="IC.currentUser.admin === 2">
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo center">BMN Inventory</a>
+    <ul class="right">
+      <li><a href="#!/" ng-click="IC.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="center" ng-if="IC.currentUser.admin === 2">
+  <h2>Welcome to BMN's Inventory</h2>
+  <h5>Please take a look at our inventory and</h5>
+  <h5>Call (1-800-BMN-INVT) to order</h5>
+</div>
+
+<div class="" ng-if="IC.currentUser.admin !== 2">
 <h1 class='center-title'>Inventory</h1>
-<h5>Call (1-800-BMN-INVT) to order</h5>
+</div>
 
 <div ng-repeat='error in errors'>
   <p ng-bind='error.message'></p>
 </div>
 
-<input placeholder="search..." ng-model="search">
+<div class="row">
+  <div class="input-field col s12">
+    <input id="email" type="text" ng-model="search_inventory">
+    <label for="email" data-error="wrong" data-success="right">Search Inventory</label>
+  </div>
+</div>
 
-<table>
+<table class="striped">
   <thead>
-    <th><button ng-click="sortType='_id'; sortReverse = !sortReverse">ID</button></th>
-    <th><button href="#" ng-click="sortType='name'; sortReverse = !sortReverse">Name</button></th>
-    <th><button href="#" ng-click='sortType="sellPrice"; sortReverse = !sortReverse'>Sell Price</button></th>
-    <th><button href="#" ng-click='sortType="quantity"; sortReverse = !sortReverse'>Quantity</button></th>
-    <th><button href="#" ng-click='sortType="companyName"; sortReverse = !sortReverse'>Company Name</button></th>
+    <tr>
+        <th data-field="name" ng-click="sortType='name'; sortReverse = !sortReverse">Name</th>
+        <th data-field="price" ng-click='sortType="sellPrice"; sortReverse = !sortReverse'>Price</th>
+        <th data-field="quantity" ng-click='sortType="quantity"; sortReverse = !sortReverse'>Quantity</th>
+        <th data-field="compname" ng-click='sortType="companyName"; sortReverse = !sortReverse'>Company Name</th>
+    </tr>
   </thead>
+
   <tbody>
-    <tr ng-repeat="product in products track by $index">
-      <td name='id' ng-bind="product._id"></td>
+    <tr ng-repeat="product in products | filter: search_inventory track by $index">
       <td ng-bind="product.name"></td>
       <td ng-if='IC.currentUser.admin !== 2'>
         <form ng-submit='updatePrice($index)'>
-          <input type="number" ng-model='products[$index].sellPrice' value='{{products[$index].sellPrice}}'>
-          <input type="submit">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="sellPrice" type="number" ng-model='products[$index].sellPrice' value='{{products[$index].sellPrice}}'>
+            </div>
+            <button class="btn waves-effect waves-light orange" type="submit" name="action">Update Sell Price
+            </button>
+          </div>
         </form>
       </td>
       <td ng-if='IC.currentUser.admin === 2'>
-        {{product.sellPrice}}
+        ${{product.sellPrice}}
       </td>
       <td ng-bind="product.quantity"></td>
       <td ng-bind="product._company.name"></td>

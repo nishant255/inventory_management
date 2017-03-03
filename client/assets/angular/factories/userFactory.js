@@ -34,9 +34,6 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
         console.log("User from Server");
         console.log(dataFromServer);
         user = dataFromServer.data;
-        console.log(user);
-        console.log(user.success);
-        console.log(user.user);
         if (user.success) {
           $cookieStore.put('logged-in', true);
           $cookieStore.put('user_id', user.user._id);
@@ -67,9 +64,9 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
     _this.findUser = function(user_id,callback){
       $http.get('/user/'+user_id).then(function(user_data){
         console.log('returned from the server controller with the user_data',user_data.data);
-        callback(user_data)
-      })
-    }
+        callback(user_data);
+      });
+    };
 
 
     // -------------------------------------------------------------------------

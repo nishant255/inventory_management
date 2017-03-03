@@ -19,8 +19,14 @@ app.controller('registerController', ['$scope', '$location', 'userFactory', '$co
         _this.success = false;
         _this.error_messages = dataFromServer.error_messages;
       } else {
-        _this.newUser = {};
-        $location.url('/userdashboard');
+        if (dataFromServer.user.admin === 2) {
+          console.log("Sending User to inventory");
+          _this.newUser = {};
+          $location.url('/inventory');
+        } else {
+          _this.newUser = {};
+          $location.url('/userdashboard');
+        }        
       }
     });
   };
