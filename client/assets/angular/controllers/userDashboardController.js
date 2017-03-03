@@ -3,6 +3,7 @@ console.log("Loading Clientside userDashboardController.js");
 app.controller('userDashboardController', ['$scope', '$location', 'productFactory', 'userFactory',  '$cookieStore',  function ($scope, $location, productFactory, userFactory, $cookieStore) {
 
   var _this = this;
+  // _this.currentUser = {};
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User
@@ -13,8 +14,6 @@ app.controller('userDashboardController', ['$scope', '$location', 'productFactor
       $location.url('/');
     } else {
       console.log("logged in");
-
-      console.log($cookieStore);
     }
   };
   CheckingUser();
@@ -27,5 +26,15 @@ app.controller('userDashboardController', ['$scope', '$location', 'productFactor
       console.log(factoryResponse);
     });
   };
+
+  // -------------------------------------------------------------------------
+  //                            Get CurrentUser
+  // -------------------------------------------------------------------------
+  var getCurrentUser = function () {
+    userFactory.getUser(function (currentUser) {
+      _this.currentUser = currentUser;
+    });
+  };
+  getCurrentUser();
 
 }]);

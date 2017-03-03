@@ -19,3 +19,7 @@ a {
 .error_messages {
   color: red;
 }
+
+.center_title {
+  text-align: center;
+}
