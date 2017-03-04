@@ -5,6 +5,7 @@ var express  = require( 'express' ),
     path     = require( 'path' ),
     morgan   = require('morgan'),
     passport = require('passport'),
+    cool     = require('cool-ascii-faces'),
     root     = __dirname,
     port     = 8000, // Adjust Required Port Number
     project  = "Inventory Management", // Change Project Name
