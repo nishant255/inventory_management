@@ -149,23 +149,32 @@ function ProductsController() {
   }
   _this.update = function(req,res){
     console.log('got to the server with the product',req.body);
-    Product.findOne(({_id:req.body._id}, function (err, product) {
-      if (err) {
-        console.log('there was an error finding product',err);
+    Product.findByIdAndUpdate(req.body.id,{$set: {sellPrice:req.body.sellPrice}}, function(err,result){
+      if(err){
+        console.log('there was an error updating order',err);
         res.json(err)
       } else {
-        product.sellPrice = req.body.sellPrice
-        product.save(function (err, updatedProduct) {
-          if (err) {
-            console.log('there was an error updating product',err);
-            res.json(err)
-          } else {
-            console.log("Updated Product");
-            res.json(updatedProduct);
-          }
-        })
+        console.log('successfully updated order',result);
+        res.json(result)
       }
     })
+    // Product.findOne(({_id:req.body._id}, function (err, product) {
+    //   if (err) {
+    //     console.log('there was an error finding product',err);
+    //     res.json(err)
+    //   } else {
+    //     product.sellPrice = req.body.sellPrice
+    //     product.save(function (err, updatedProduct) {
+    //       if (err) {
+    //         console.log('there was an error updating product',err);
+    //         res.json(err)
+    //       } else {
+    //         console.log("Updated Product");
+    //         res.json(updatedProduct);
+    //       }
+    //     })
+    //   }
+    // })
     // Product.update({_id:req.body._id},req.body,function(err,result){
     //   if(err){
     //     console.log('there was an error updating',err);
