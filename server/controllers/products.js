@@ -149,15 +149,32 @@ function ProductsController() {
   }
   _this.update = function(req,res){
     console.log('got to the server with the product',req.body);
-    Product.update({_id:req.body._id},req.body,function(err,result){
-      if(err){
-        console.log('there was an error updating',err);
+    Product.findOne(({_id:req.body._id}, function (err, product) {
+      if (err) {
+        console.log('there was an error finding product',err);
         res.json(err)
       } else {
-        console.log('succusssssssssssss',result);
-        res.json(result)
+        product.sellPrice = req.body.sellPrice
+        product.save(function (err, updatedProduct) {
+          if (err) {
+            console.log('there was an error updating product',err);
+            res.json(err)
+          } else {
+            console.log("Updated Product");
+            res.json(updatedProduct);
+          }
+        })
       }
     })
+    // Product.update({_id:req.body._id},req.body,function(err,result){
+    //   if(err){
+    //     console.log('there was an error updating',err);
+    //     res.json(err)
+    //   } else {
+    //     console.log('succusssssssssssss',result);
+    //     res.json(result)
+    //   }
+    // })
   }
 }
 
