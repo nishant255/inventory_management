@@ -54,7 +54,7 @@ app.controller('dashboardController', ['$scope', '$location', 'productFactory', 
     $scope.totalvalue = value;
   });
 
-  orderFactory.index(function(orders){
+  orderFactory.indexNotReceived(function(orders){
     $scope.orders = orders.data;
   });
   productFactory.findAllProductsWithSellPrice(function(products){

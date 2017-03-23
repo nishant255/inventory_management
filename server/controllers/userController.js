@@ -66,8 +66,11 @@ function UserController() {
       error_messages.push("Phone Number can Contain Only Numbers");
       success = false;
     }
-    if (req.body.phone_number.length !== 10) {
+    if (String(req.body.phone_number).length !== 10) {
       console.log("Phone Number has to be 10 Digits");
+      console.log(typeof(req.body.phone_number));
+      console.log(req.body.phone_number.length);
+      console.log(req.body.phone_number);
       error_messages.push("Phone Number has to be 10 Digits");
       success = false;
     }
@@ -102,6 +105,7 @@ function UserController() {
     console.log("Logging User");
     console.log(req.body);
     error_messages = [];
+    var success = true
     if (!req.body.email) {
       console.log("No email");
       error_messages.push("Email is Required");
